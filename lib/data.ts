@@ -100,17 +100,20 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: "1",
-    company: "Shree L.R. Tiwari College of Engineering",
-    role: "B.E. Information Technology",
-    duration: "Jun 2022 – 2026",
-    location: "Maharashtra, India",
+    company: "Shreyains Coding School",
+    role: "MERN Stack Trainee (Apprenticeship)",
+    duration: "Aug 2025 – Present",
+    location: "Remote, India",
+  
+    currentlyWorking: true, 
     achievements: [
-      "Pursuing Bachelor of Engineering in Information Technology",
-      "Strong focus on full-stack web development and system design",
-      "Built multiple MERN stack projects including SaaS and AI-based applications",
-      "Active in competitive programming and web development practice",
+      "Undergoing full-stack MERN training with hands-on project development",
+      "Working on real-world applications using React, Node.js, Express, and MongoDB",
+      "Practicing authentication systems, REST APIs, and scalable backend architecture",
+      "Improving problem-solving and production-level coding skills",
     ],
   },
+
   {
     id: "2",
     company: "Technohacks Solution Pvt. Ltd.",
@@ -126,17 +129,39 @@ export const experiences: Experience[] = [
       "Debugged frontend-backend integration issues for smooth API communication",
     ],
   },
+
   {
     id: "3",
-    company: "Shreyains Coding School",
-    role: "MERN Stack Trainee (Apprenticeship)",
-    duration: "Aug 2025 – Present",
-    location: "Remote, India",
+    company: "Shree L. R. Tiwari College of Engineering",
+    role: "Cyber Security Intern",
+    duration: "Apr 2024 – May 2024",
+    location: "Mumbai, Maharashtra, India",
     achievements: [
-      "Undergoing full-stack MERN training with hands-on project development",
-      "Working on real-world applications using React, Node.js, Express, and MongoDB",
-      "Practicing authentication systems, REST APIs, and scalable backend architecture",
-      "Improving problem-solving and production-level coding skills",
+      "Completed hands-on training in Cyber Security and Ethical Hacking with practical exposure to Kali Linux, network security, vulnerability assessment, and security testing concepts",
+
+      "Worked on security-focused mini projects and simulations including phishing awareness demonstrations in controlled lab environments for educational purposes",
+
+      "Gained practical understanding of Kali Linux tools, penetration testing concepts, network and web application security",
+
+      "Developed awareness of cyber security fundamentals, threat analysis, and vulnerability assessment workflows",
+
+      "Prepared reports and documentation for security findings and testing activities",
+
+      "Focused on Network Security and Penetration Testing concepts during practical sessions",
+    ],
+  },
+
+  {
+    id: "4",
+    company: "Shree L.R. Tiwari College of Engineering",
+    role: "B.E. Information Technology",
+    duration: "Jun 2022 – 2026",
+    location: "Maharashtra, India",
+    achievements: [
+      "Pursuing Bachelor of Engineering in Information Technology",
+      "Strong focus on full-stack web development and system design",
+      "Built multiple MERN stack projects including SaaS and AI-based applications",
+      "Active in competitive programming and web development practice",
     ],
   },
 ];

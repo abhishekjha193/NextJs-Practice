@@ -56,6 +56,8 @@ export interface Experience {
   location: string;
   achievements: string[];
   logo?: string;
+  current?: boolean;
+  currentlyWorking?: boolean;
 }
 
 export interface Certificate {
@@ -66,4 +68,5 @@ export interface Certificate {
   credentialUrl?: string;
   badgeColor: string;
   image?: string;
+  
 }

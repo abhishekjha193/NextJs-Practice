@@ -6,38 +6,6 @@ export const projects: Project[] = [
   {
     id: "1",
 
-    title: "Emotion Aware Music Player",
-
-    description:
-      "AI-powered mood-based music player with real-time emotion detection and personalized music recommendations.",
-
-    longDescription:
-      "Developed a full-stack AI music application that detects user emotions via webcam using MediaPipe face landmarks. Built real-time mood classification system and personalized recommendation engine with custom music player interface. Optimized authentication and API performance for smoother user experience.",
-
-    tech: [
-      "MongoDB",
-      "Express.js",
-      "React.js",
-      "Node.js",
-      "MediaPipe",
-      "Redis",
-      "JavaScript",
-      "AI",
-    ],
-
-    liveUrl: "https://moodify-ai-music-player.vercel.app/",
-
-    githubUrl:
-      "https://github.com/abhishekjha193/Moodify-ai-music-player",
-
-    featured: true,
-
-    gradient: "from-red-600/20 to-red-500/20",
-  },
-
-  {
-    id: "2",
-
     title: "AI Model Arena",
 
     description:
@@ -55,7 +23,9 @@ export const projects: Project[] = [
       "AI Integration",
     ],
 
-    liveUrl: "Coming Soon",
+    image: "/ai_model.png",
+
+    liveUrl: "#",
 
     githubUrl:
       "https://github.com/abhishekjha193/AI_Model_Arena",
@@ -66,7 +36,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: "3",
+    id: "2",
 
     title: "Snitch MERN Stack Clothing Platform",
 
@@ -74,7 +44,7 @@ export const projects: Project[] = [
       "Production-ready full-stack clothing e-commerce platform inspired by modern fashion brands with premium UI and scalable architecture.",
 
     longDescription:
-      "Built a modern MERN stack fashion platform featuring secure authentication, responsive shopping experience, product catalog management, cart functionality, and optimized frontend performance. Designed a premium UI inspired by contemporary clothing brands with scalable backend architecture and reusable component system.",
+      "Built a modern MERN stack fashion platform featuring secure authentication, responsive shopping experience, product catalog management, cart functionality, and optimized frontend performance.",
 
     tech: [
       "MongoDB",
@@ -87,30 +57,50 @@ export const projects: Project[] = [
       "REST APIs",
     ],
 
-    liveUrl: "https://github.com/abhishekjha193/Snitch",
+    image: "/snitch.png",
 
-    githubUrl: "https://github.com/abhishekjha193/Snitch",
+    liveUrl:
+      "https://github.com/abhishekjha193/Snitch",
 
-    featured: false,
+    githubUrl:
+      "https://github.com/abhishekjha193/Snitch",
+
+    featured: true,
 
     gradient: "from-red-600/20 to-red-500/20",
   },
 ];
 
 export const experiences: Experience[] = [
+  // {
+  //   id: "1",
+  //   company: "Shreyains Coding School",
+  //   role: "MERN Stack Trainee (Apprenticeship)",
+  //   duration: "Aug 2025 – Present",
+  //   location: "Remote, India",
+  
+  //   currentlyWorking: true, 
+  //   achievements: [
+  //     "Undergoing full-stack MERN training with hands-on project development",
+  //     "Working on real-world applications using React, Node.js, Express, and MongoDB",
+  //     "Practicing authentication systems, REST APIs, and scalable backend architecture",
+  //     "Improving problem-solving and production-level coding skills",
+  //   ],
+  // },
+
   {
     id: "1",
-    company: "Shreyains Coding School",
-    role: "MERN Stack Trainee (Apprenticeship)",
-    duration: "Aug 2025 – Present",
-    location: "Remote, India",
+    company: "Independent Projects (Self-Employed)",
+    role: "Full Stack Web Developer",
+    duration: "Jan 2026 – Present",
+    location: "Mumbai, Maharashtra, India",
   
     currentlyWorking: true, 
     achievements: [
-      "Undergoing full-stack MERN training with hands-on project development",
-      "Working on real-world applications using React, Node.js, Express, and MongoDB",
-      "Practicing authentication systems, REST APIs, and scalable backend architecture",
-      "Improving problem-solving and production-level coding skills",
+      "Built multiple modern full stack MERN applications focused on AI integration, scalable backend systems, and responsive user experiences",
+      "Built a Snitch-inspired fashion e-commerce platform with product management, authentication, cart functionality, category filtering, and responsive UI",
+      "Developing an AI Model Arena platform that compares responses from multiple AI models and agents within a unified interface",
+      "Worked with React.js, Node.js, Express.js, MongoDB, REST APIs, JWT authentication, and modern frontend architecture to create real-world applications",
     ],
   },
 
@@ -216,3 +206,4 @@ export const certificates: Certificate[] = [
     image: "/certificate/genai.jpg",
   },
 ];
+

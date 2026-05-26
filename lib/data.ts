@@ -1,15 +1,47 @@
 import { Project, Experience, Certificate } from "@/types";
 
-export const GITHUB_USERNAME = "abhishekjha193"; 
+export const GITHUB_USERNAME = "abhishekjha193";
 
 export const projects: Project[] = [
   {
-    id: "1",
+    id: "3",
 
-    title: "AI Model Arena",
+    title: "Real Time Emotion Aware Music Player",
 
     description:
-      "LLM comparison platform to evaluate and compare responses from multiple AI models in real time.",
+      "AI-powered music player that detects user emotions through facial expressions and recommends songs in real time.",
+
+    longDescription:
+      "Developed a full-stack emotion-aware music player using the MERN stack and MediaPipe for facial expression detection. The application captures webcam input, analyzes user emotions in real time, and recommends songs based on detected mood. Built REST APIs for managing users, songs, and recommendations while implementing core audio player functionalities such as play, pause, seek, and volume control for a seamless listening experience.",
+
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JavaScript",
+      "MediaPipe",
+      "REST APIs",
+      "AI Integration",
+    ],
+
+    image: "/music_player.png",
+
+    liveUrl: "https://moodify-ai-music-player.vercel.app/",
+
+    githubUrl: "https://github.com/abhishekjha193/Moodify-ai-music-player",
+
+    featured: true,
+
+    gradient: "from-pink-600/20 to-purple-500/20",
+  },
+  {
+    id: "1",
+
+    title: "AI Model Arena (Under Version 2.0 Development)",
+
+    description:
+      "LLM comparison platform to evaluate and compare responses from multiple AI models in real time. (Live Link Might NOT be working due to API key restrictions but will be available soon)  ",
 
     longDescription:
       "Built a platform integrating multiple AI model APIs to generate responses simultaneously and compare outputs side-by-side. Designed a clean evaluation interface allowing users to identify the most accurate and contextually relevant AI-generated responses efficiently.",
@@ -27,48 +59,47 @@ export const projects: Project[] = [
 
     liveUrl: "#",
 
-    githubUrl:
-      "https://github.com/abhishekjha193/AI_Model_Arena",
+    githubUrl: "https://github.com/abhishekjha193/AI_Model_Arena",
 
     featured: true,
 
     gradient: "from-red-600/20 to-red-500/20",
   },
 
-  {
-    id: "2",
+  // {
+  //   id: "2",
 
-    title: "Snitch MERN Stack Clothing Platform",
+  //   title: "Snitch MERN Stack Clothing Platform",
 
-    description:
-      "Production-ready full-stack clothing e-commerce platform inspired by modern fashion brands with premium UI and scalable architecture.",
+  //   description:
+  //     "Production-ready full-stack clothing e-commerce platform inspired by modern fashion brands with premium UI and scalable architecture.",
 
-    longDescription:
-      "Built a modern MERN stack fashion platform featuring secure authentication, responsive shopping experience, product catalog management, cart functionality, and optimized frontend performance.",
+  //   longDescription:
+  //     "Built a modern MERN stack fashion platform featuring secure authentication, responsive shopping experience, product catalog management, cart functionality, and optimized frontend performance.",
 
-    tech: [
-      "MongoDB",
-      "Express.js",
-      "React.js",
-      "Node.js",
-      "Redux",
-      "Tailwind CSS",
-      "JWT",
-      "REST APIs",
-    ],
+  //   tech: [
+  //     "MongoDB",
+  //     "Express.js",
+  //     "React.js",
+  //     "Node.js",
+  //     "Redux",
+  //     "Tailwind CSS",
+  //     "JWT",
+  //     "REST APIs",
+  //   ],
 
-    image: "/snitch.png",
+  //   image: "/snitch.png",
 
-    liveUrl:
-      "https://github.com/abhishekjha193/Snitch",
+  //   liveUrl: "https://github.com/abhishekjha193/Snitch",
 
-    githubUrl:
-      "https://github.com/abhishekjha193/Snitch",
+  //   githubUrl: "https://github.com/abhishekjha193/Snitch",
 
-    featured: true,
+  //   featured: true,
 
-    gradient: "from-red-600/20 to-red-500/20",
-  },
+  //   gradient: "from-red-600/20 to-red-500/20",
+  // },
+
+  
 ];
 
 export const experiences: Experience[] = [
@@ -78,8 +109,8 @@ export const experiences: Experience[] = [
   //   role: "MERN Stack Trainee (Apprenticeship)",
   //   duration: "Aug 2025 – Present",
   //   location: "Remote, India",
-  
-  //   currentlyWorking: true, 
+
+  //   currentlyWorking: true,
   //   achievements: [
   //     "Undergoing full-stack MERN training with hands-on project development",
   //     "Working on real-world applications using React, Node.js, Express, and MongoDB",
@@ -94,8 +125,8 @@ export const experiences: Experience[] = [
     role: "Full Stack Web Developer",
     duration: "Jan 2026 – Present",
     location: "Mumbai, Maharashtra, India",
-  
-    currentlyWorking: true, 
+
+    currentlyWorking: true,
     achievements: [
       "Built multiple modern full stack MERN applications focused on AI integration, scalable backend systems, and responsive user experiences",
       "Built a Snitch-inspired fashion e-commerce platform with product management, authentication, cart functionality, category filtering, and responsive UI",
@@ -206,4 +237,3 @@ export const certificates: Certificate[] = [
     image: "/certificate/genai.jpg",
   },
 ];
-

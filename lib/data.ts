@@ -38,10 +38,10 @@ export const projects: Project[] = [
   {
     id: "1",
 
-    title: "AI Model Arena (Under Version 2.0 Development)",
+    title: "Cyber Dome - AI Model Arena Plateform ",
 
     description:
-      "LLM comparison platform to evaluate and compare responses from multiple AI models in real time. (Live Link Might NOT be working due to API key restrictions but will be available soon)  ",
+      "LLM comparison platform to evaluate and compare responses from multiple AI models in real time ",
 
     longDescription:
       "Built a platform integrating multiple AI model APIs to generate responses simultaneously and compare outputs side-by-side. Designed a clean evaluation interface allowing users to identify the most accurate and contextually relevant AI-generated responses efficiently.",
@@ -50,6 +50,7 @@ export const projects: Project[] = [
       "React.js",
       "Node.js",
       "Express.js",
+      "Typescript",
       "JavaScript",
       "LLM APIs",
       "AI Integration",
@@ -57,7 +58,7 @@ export const projects: Project[] = [
 
     image: "/ai_model.png",
 
-    liveUrl: "#",
+    liveUrl: "https://cyberdome.vercel.app/",
 
     githubUrl: "https://github.com/abhishekjha193/AI_Model_Arena",
 

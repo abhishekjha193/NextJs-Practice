@@ -6,7 +6,7 @@ export const projects: Project[] = [
   {
     id: "3",
 
-    title: "Real Time Emotion Aware Music Player",
+    title: " Mindtunes - Real Time Emotion Aware Music Player",
 
     description:
       "AI-powered music player that detects user emotions through facial expressions and recommends songs in real time.",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
 
     image: "/music_player.png",
 
-    liveUrl: "https://moodify-ai-music-player.vercel.app/",
+    liveUrl: "https://mindtunes.vercel.app/",
 
     githubUrl: "https://github.com/abhishekjha193/Moodify-ai-music-player",
 
@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     id: "1",
 
-    title: "Cyber Dome - AI Model Arena Plateform ",
+    title: "NeuroArena - Multi-Model Response Evaluation Platform",
 
     description:
       "LLM comparison platform to evaluate and compare responses from multiple AI models in real time ",
@@ -58,7 +58,7 @@ export const projects: Project[] = [
 
     image: "/ai_model.png",
 
-    liveUrl: "https://cyberdome.vercel.app/",
+    liveUrl: "https://neuroarena.vercel.app/",
 
     githubUrl: "https://github.com/abhishekjha193/AI_Model_Arena",
 

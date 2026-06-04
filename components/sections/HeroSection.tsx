@@ -1,148 +1,227 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles, ExternalLink } from "lucide-react";
+import { ArrowDown, Briefcase } from "lucide-react";
+import LightRays from "@/components/ui/LightRays";
+import Image from "next/image";
+import { useRef, useState } from "react";
 
 const stagger = {
-  container: { animate: { transition: { staggerChildren: 0.12, delayChildren: 2.1 } } },
+  container: {
+    animate: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+  },
   item: {
-    initial: { opacity: 0, y: 24 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
+    initial: { opacity: 0, y: 12 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   },
 };
 
-export default function HeroSection() {
-  return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 mesh-bg overflow-hidden"
-    >
-      {/* Radial gradient backdrop */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(14,165,233,0.08) 0%, transparent 70%)",
-        }}
-      />
+function MagneticImage() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
 
-      {/* Floating orbs */}
-      <motion.div
-        className="absolute top-1/4 -left-32 w-64 h-64 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%)" }}
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+  const move = (e: any) => {
+    const r = ref.current?.getBoundingClientRect();
+    if (!r) return;
+
+    setPos({
+      x: (e.clientX - (r.left + r.width / 2)) * 0.5,
+      y: (e.clientY - (r.top + r.height / 2)) * 0.5,
+    });
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={move}
+      onMouseLeave={() => setPos({ x: 0, y: 0 })}
+      animate={{ x: pos.x, y: pos.y }}
+      transition={{ type: "spring", stiffness: 120, damping: 16 }}
+      className="relative z-20 mx-auto w-[160px] sm:w-[210px] md:w-[250px]"
+    >
+      <Image
+        src="/b.png"
+        alt="Abhishek"
+        width={400}
+        height={400}
+        className="w-full h-auto object-contain select-none pointer-events-none"
+        priority
       />
-      <motion.div
-        className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)" }}
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
+    </motion.div>
+  );
+}
+
+function Button({
+  children,
+  href,
+  primary,
+  shine,
+}: {
+  children: React.ReactNode;
+  href: string;
+  primary?: boolean;
+  shine?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      className={`
+        relative inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-medium
+        transition-all duration-300 active:scale-95 overflow-hidden w-full sm:w-auto group
+        ${
+          primary
+            ? "bg-red-500 text-white shadow-[0_10px_30px_rgba(239,68,68,0.35)]"
+            : "border border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/30 backdrop-blur-md text-black dark:text-white"
+        }
+      `}
+    >
+      <span className="relative z-10">{children}</span>
+
+      {/* hover sweep (FIXED visibility) */}
+      <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent -translate-x-full group-hover:translate-x-full" />
+
+      {/* premium shine (FIXED for both themes) */}
+      {shine && (
+        <span className="absolute inset-0 overflow-hidden rounded-xl">
+          <span className="absolute -top-1/2 left-[-70%] w-[45%] h-[220%] rotate-12 bg-gradient-to-r from-transparent via-red-400/20 to-transparent blur-md animate-shine" />
+        </span>
+      )}
+    </a>
+  );
+}
+
+export default function HeroSection({
+  status = "open",
+  currentCompany = "XYZ Company",
+}) {
+  const isOpen = status === "open";
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center px-6 bg-background text-foreground overflow-hidden">
+
+      {/* LightRays */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ef4444"
+          raysSpeed={0.35}
+          lightSpread={0.75}
+          rayLength={2.2}
+          followMouse
+          mouseInfluence={0.05}
+          noiseAmount={0}
+          distortion={0}
+          pulsating={false}
+          fadeDistance={1}
+          saturation={0.9}
+        />
+      </div>
+
+      {/* radial glow */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(239,68,68,0.12),transparent_60%)]" />
 
       <motion.div
         variants={stagger.container}
         initial="initial"
         animate="animate"
-        className="relative z-10 max-w-4xl"
+        className="relative z-10 max-w-3xl w-full text-center"
       >
-        {/* Badge */}
-        <motion.div variants={stagger.item} className="flex justify-center mb-8">
-          <div className="glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border" style={{ color: "var(--accent)", borderColor: "var(--accent-glow)" }}>
-            <Sparkles size={13} />
-            Open to new opportunities
+
+        {/* STATUS */}
+        <motion.div variants={stagger.item} className="flex justify-center mb-2 mt-3">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/30 backdrop-blur-md text-sm">
+            <Briefcase size={14} />
+            {isOpen ? (
+              <span>
+                <span className="text-green-500 font-medium">Open to Work</span>{" "}
+                • Available for opportunities
+              </span>
+            ) : (
+              <span>
+                Currently at{" "}
+                <span className="text-red-500 font-medium">{currentCompany}</span>
+              </span>
+            )}
           </div>
         </motion.div>
 
-        {/* Heading */}
+        {/* NAME */}
         <motion.h1
           variants={stagger.item}
-          className="text-5xl sm:text-7xl md:text-8xl font-bold leading-[0.95] tracking-tight mb-6"
-          style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
+          className="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight"
         >
-          <span className="gradient-text">Abhishek Jha</span>
-          <span className="block mt-1" style={{ color: "var(--text-secondary)", fontSize: "0.7em", fontWeight: 300 }}>
-            Full Stack Web Developer
-          </span>
+          Abhishek Jha
         </motion.h1>
 
-        {/* Tagline */}
-        <motion.p
-          variants={stagger.item}
-          className="text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-          style={{ color: "var(--text-secondary)", fontWeight: 300 }}
-        >
-          I build{" "}
-          <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>performant</span>,{" "}
-          <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>scalable</span>, and{" "}
-          <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>beautiful</span>{" "}
-          web experiences — from zero to production.
+        {/* ROLE */}
+        <motion.p variants={stagger.item} className="mt-2 text-lg sm:text-xl opacity-80">
+          Full Stack Web Developer
         </motion.p>
 
-        {/* CTAs */}
-        <motion.div variants={stagger.item} className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-semibold text-white transition-all hover:scale-105 active:scale-95 hover:shadow-lg"
-            style={{ background: "linear-gradient(135deg, var(--accent), #b91c1c)" }}
-          >
-            View Projects
-          </a>
-
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-medium transition-all hover:scale-105 active:scale-95 border"
-            style={{
-              color: "var(--text-primary)",
-              borderColor: "var(--border)",
-              background: "rgba(255,255,255,0.02)",
-            }}
-          >
-            <ExternalLink size={16} />
-            Resume
-          </a>
-
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-medium glass transition-all hover:scale-105 active:scale-95"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Get in Touch
-          </a>
+        {/* IMAGE */}
+        <motion.div variants={stagger.item} className="my-1">
+          <MagneticImage />
         </motion.div>
 
-        {/* Stack badges */}
+        {/* TAGLINE */}
+        <motion.p
+          variants={stagger.item}
+          className="text-sm sm:text-base max-w-xl mx-auto opacity-70 leading-relaxed"
+        >
+          I build scalable, performant and clean UI-driven web applications from idea to production.
+        </motion.p>
+
+        {/* BUTTONS */}
         <motion.div
           variants={stagger.item}
-          className="flex flex-wrap items-center justify-center gap-2 mt-12"
+          className="flex flex-col sm:flex-row gap-2 justify-center mt-5"
         >
-          {["React", "MongoDB", "TypeScript", "Node.js", "Express.js", "GitHub"].map((tech) => (
+          <Button href="#projects" primary>
+            View Projects
+          </Button>
+
+          <Button href="/resume.pdf" shine>
+            Download Resume
+          </Button>
+
+          <Button href="#contact" shine>
+            Contact Me
+          </Button>
+        </motion.div>
+
+        {/* TECH STACK */}
+        <motion.div
+          variants={stagger.item}
+          className="flex flex-wrap justify-center gap-2 mt-8"
+        >
+          {["React", "Next.js", "TypeScript", "Node.js", "MongoDB"].map((t) => (
             <span
-              key={tech}
-              className="px-3 py-1 rounded-full text-xs font-mono glass"
-              style={{ color: "var(--text-tertiary)" }}
+              key={t}
+              className="px-3 py-1 text-xs rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/30"
             >
-              {tech}
+              {t}
             </span>
           ))}
         </motion.div>
+
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* SCROLL INDICATOR */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ color: "var(--text-tertiary)" }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 opacity-60"
       >
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
           <ArrowDown size={16} />
         </motion.div>
       </motion.div>
+
     </section>
   );
 }

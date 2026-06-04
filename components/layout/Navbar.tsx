@@ -4,14 +4,7 @@ import { memo, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Moon,
-  Sun,
-  Menu,
-  X,
-  Search,
-  Sparkles,
-} from "lucide-react";
+import { Moon, Sun, Menu, X, Search, Sparkles } from "lucide-react";
 
 import { useTheme } from "@/components/ui/ThemeProvider";
 
@@ -22,24 +15,23 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const NavbarLink = memo(
-  ({ href, label }: { href: string; label: string }) => (
-    <Link
-      href={href}
-      className="
+const NavbarLink = memo(({ href, label }: { href: string; label: string }) => (
+  <Link
+    href={href}
+    className="
         group relative
         px-4 py-2
         rounded-2xl
         text-sm font-medium
         transition-all duration-300
       "
-      style={{
-        color: "var(--text-secondary)",
-      }}
-    >
-      {/* HOVER BG */}
-      <span
-        className="
+    style={{
+      color: "var(--text-secondary)",
+    }}
+  >
+    {/* HOVER BG */}
+    <span
+      className="
           absolute inset-0
           rounded-2xl
           opacity-0 scale-95
@@ -47,17 +39,17 @@ const NavbarLink = memo(
           group-hover:opacity-100
           group-hover:scale-100
         "
-        style={{
-          background: "var(--surface-hover)",
-        }}
-      />
+      style={{
+        background: "var(--surface-hover)",
+      }}
+    />
 
-      {/* LABEL */}
-      <span className="relative z-10">{label}</span>
+    {/* LABEL */}
+    <span className="relative z-10">{label}</span>
 
-      {/* ACTIVE DOT */}
-      <span
-        className="
+    {/* ACTIVE DOT */}
+    <span
+      className="
           absolute -bottom-0.5 left-1/2
           h-1 w-1
           -translate-x-1/2
@@ -67,10 +59,9 @@ const NavbarLink = memo(
           transition-all duration-300
           group-hover:opacity-100
         "
-      />
-    </Link>
-  )
-);
+    />
+  </Link>
+));
 
 NavbarLink.displayName = "NavbarLink";
 
@@ -98,8 +89,7 @@ export default function Navbar() {
       passive: true,
     });
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const triggerSearch = useCallback(() => {
@@ -126,36 +116,31 @@ export default function Navbar() {
         <div
           className="
             relative overflow-hidden
-            rounded-[28px]
+            rounded-[32px]
             border
             transition-all duration-300
           "
           style={{
-            borderColor: scrolled
-              ? "var(--border)"
-              : "transparent",
+            borderColor:
+              theme === "dark" ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
 
             background:
               theme === "dark"
                 ? scrolled
-                  ? "rgba(12,12,12,0.68)"
-                  : "rgba(12,12,12,0.38)"
+                  ? "rgba(10,10,10,0.92)"
+                  : "rgba(10,10,10,0.82)"
                 : scrolled
-                ? "rgba(255,255,255,0.75)"
-                : "rgba(255,255,255,0.55)",
+                  ? "rgba(255,255,255,0.75)"
+                  : "rgba(255,255,255,0.55)",
 
-            backdropFilter: "blur(22px)",
+            backdropFilter: "blur(30px)",
 
-            WebkitBackdropFilter: "blur(22px)",
+            WebkitBackdropFilter: "blur(30px)",
 
             boxShadow:
               theme === "dark"
-                ? scrolled
-                  ? "0 10px 40px rgba(0,0,0,0.28)"
-                  : "none"
-                : scrolled
-                ? "0 10px 40px rgba(0,0,0,0.08)"
-                : "none",
+                ? "0 20px 60px rgba(0,0,0,0.65)"
+                : "0 20px 60px rgba(0,0,0,0.08)",
           }}
         >
           {/* PREMIUM LIGHT */}
@@ -322,11 +307,7 @@ export default function Navbar() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {theme === "dark" ? (
-                      <Sun size={16} />
-                    ) : (
-                      <Moon size={16} />
-                    )}
+                    {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                   </motion.div>
                 </AnimatePresence>
               </button>
@@ -355,11 +336,7 @@ export default function Navbar() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {menuOpen ? (
-                      <X size={18} />
-                    ) : (
-                      <Menu size={18} />
-                    )}
+                    {menuOpen ? <X size={18} /> : <Menu size={18} />}
                   </motion.div>
                 </AnimatePresence>
               </button>

@@ -69,5 +69,6 @@ export interface Certificate {
   credentialUrl?: string;
   badgeColor: string;
   image?: string;
+  logo?: string;
   
 }

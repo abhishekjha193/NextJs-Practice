@@ -1,128 +1,128 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import LightRays from "@/components/ui/LightRays";
 
 export default function LoadingScreen() {
-  const [visible, setVisible] = useState(true);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 2200);
+    const timer = setTimeout(() => setShow(false), 2400);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <AnimatePresence>
-      {visible && (
+      {show && (
         <motion.div
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
             scale: 1.05,
             filter: "blur(10px)",
-            transition: { duration: 0.8, ease: "easeInOut" },
+            transition: {
+              duration: 0.8,
+              ease: [0.76, 0, 0.24, 1],
+            },
           }}
-          className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden"
-          style={{ background: "var(--bg)" }}
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-background overflow-hidden"
         >
-          {/* Background Glow */}
-          <motion.div
-            animate={{
-              scale: [1, 1.15, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute w-[500px] h-[500px] rounded-full bg-red-600/10 blur-3xl"
-          />
+          {/* Same Light Rays */}
+          <div className="absolute inset-0 opacity-50">
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#ef4444"
+              raysSpeed={0.3}
+              lightSpread={0.7}
+              rayLength={2}
+              followMouse={false}
+            />
+          </div>
 
-          <div className="relative flex flex-col items-center gap-8">
-            {/* Logo */}
+          {/* Same Hero Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(239,68,68,0.12),transparent_60%)]" />
+
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            className="relative z-10 flex flex-col items-center"
+          >
+            {/* Image */}
             <motion.div
-              initial={{ scale: 0.7, opacity: 0 }}
+              initial={{
+                opacity: 0,
+                scale: 0.85,
+                y: 20,
+              }}
               animate={{
-                scale: 1,
                 opacity: 1,
+                scale: 1,
+                y: 0,
               }}
               transition={{
-                duration: 0.5,
-                ease: "easeOut",
+                duration: 1,
+                ease: [0.16, 1, 0.3, 1],
               }}
-              className="relative"
             >
-              {/* Pulse Glow */}
-              <motion.div
-                className="absolute inset-0 rounded-3xl bg-red-600/20 blur-xl"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.7, 0.3],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              />
-
-              <div className="relative w-16 h-16 backdrop-blur-xl">
-                <img
-                  src="/a.png"
-                  alt="logo"
-                  className="w-full h-full object-contain rounded-2xl"
-                />
-              </div>
-
-              {/* Main Orbit */}
-              <motion.div
-                className="absolute -inset-3 rounded-[24px] border border-red-500/60"
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-
-              {/* Secondary Orbit */}
-              <motion.div
-                className="absolute -inset-5 rounded-[32px] border border-red-500/20"
-                animate={{ rotate: -360 }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+              <Image
+                src="/b.png"
+                alt=""
+                width={250}
+                height={250}
+                priority
+                className="w-[180px] md:w-[220px]"
               />
             </motion.div>
 
-            {/* Loading Bar */}
-            <div className="w-52 h-[3px] bg-white/5 rounded-full overflow-hidden">
+            {/* Name */}
+            <motion.h1
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.4,
+                duration: 0.7,
+              }}
+              className="text-3xl md:text-5xl font-bold mt-4"
+            >
+              Abhishek Jha
+            </motion.h1>
+
+            {/* Role */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              transition={{
+                delay: 0.7,
+                duration: 0.7,
+              }}
+              className="mt-2 text-sm tracking-[0.3em] uppercase"
+            >
+              Full Stack Developer
+            </motion.p>
+
+            {/* Minimal Progress */}
+            <motion.div
+              className="mt-8 h-[2px] w-40 bg-white/5 rounded-full overflow-hidden"
+            >
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-red-600 via-red-400 to-red-600"
-                initial={{ width: "0%" }}
+                className="h-full bg-red-500"
+                initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{
-                  duration: 1.8,
+                  duration: 2,
                   ease: "easeInOut",
                 }}
               />
-            </div>
-
-            {/* Text */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-              }}
-              className="text-sm tracking-[0.25em] uppercase text-neutral-400"
-            >
-              Loading...
-            </motion.p>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

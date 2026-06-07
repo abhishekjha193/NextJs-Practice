@@ -124,7 +124,7 @@ export const experiences: Experience[] = [
     id: "1",
     company: "Independent Projects (Self-Employed)",
     role: "Full Stack Web Developer",
-    duration: "Jan 2026 – Present",
+    duration: "Mar 2026 – May 2026",
     location: "Mumbai, Maharashtra, India",
 
     currentlyWorking: true,
@@ -140,7 +140,7 @@ export const experiences: Experience[] = [
     id: "2",
     company: "Technohacks Solution Pvt. Ltd.",
     role: "Full Stack Developer Intern",
-    duration: "Jan 2026",
+    duration: "Jan 2026 - Feb 2026",
     location: "Remote, India",
     achievements: [
       "Developed features for a task management platform using MERN stack",
@@ -177,8 +177,8 @@ export const experiences: Experience[] = [
     id: "4",
     company: "Shree L.R. Tiwari College of Engineering",
     role: "B.E. Information Technology",
-    duration: "Jun 2022 – 2026",
-    location: "Maharashtra, India",
+    duration: "July 2022 - 2026",
+    location: "Mumbai, Maharashtra, India",
     achievements: [
       "Pursuing Bachelor of Engineering in Information Technology",
       "Strong focus on full-stack web development and system design",
@@ -254,3 +254,4 @@ export const certificates: Certificate[] = [
     logo: "/certificate-logo/ml.png",
   },
 ];
+

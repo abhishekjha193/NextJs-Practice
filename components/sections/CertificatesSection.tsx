@@ -12,13 +12,10 @@ export default function CertificatesSection() {
   const [showAll, setShowAll] = useState(false);
 
   // ✅ FIX: default 3 only
-  const visibleCertificates = showAll
-    ? certificates
-    : certificates.slice(0, 3);
+  const visibleCertificates = showAll ? certificates : certificates.slice(0, 3);
 
   return (
     <SectionWrapper id="certificates">
-
       {/* HEADER */}
       <div className="text-center mb-10">
         <p className="text-xs tracking-widest text-red-500">Credentials</p>
@@ -48,7 +45,6 @@ export default function CertificatesSection() {
             "
           >
             <div className="flex items-center gap-3">
-
               {/* LOGO (FIXED - no circle, clean square bigger) */}
               <div className="w-12 h-12 rounded-xl overflow-hidden bg-transparent flex items-center justify-center">
                 <Image
@@ -118,8 +114,7 @@ export default function CertificatesSection() {
               exit={{ scale: 0.95, opacity: 0 }}
               className="fixed inset-0 flex items-center justify-center z-[110] px-4"
             >
-              <div className="w-full max-w-xl rounded-2xl overflow-hidden border bg-[var(--surface)] border-[var(--border)]">
-
+              <div className="w-full max-w-xl rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] backdrop-blur-xl shadow-xl">
                 {/* HEADER */}
                 <div className="p-4 flex items-center justify-between border-b border-white/10">
                   <div>
@@ -151,13 +146,11 @@ export default function CertificatesSection() {
                     />
                   </div>
                 </div>
-
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-
     </SectionWrapper>
   );
 }

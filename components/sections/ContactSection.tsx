@@ -82,7 +82,7 @@ Message: ${form.message}`;
         <div className="mb-16 text-center">
           <p className="section-label mb-4">Contact</p>
 
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-black dark:text-white">
+          <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-black dark:text-white">
             connect with me, and create something
             <span className="block text-zinc-400">
               worth remembering.

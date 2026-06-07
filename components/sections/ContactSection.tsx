@@ -83,7 +83,7 @@ Message: ${form.message}`;
           <p className="section-label mb-4">Contact</p>
 
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-black dark:text-white">
-            Let's create something
+            Let&apos;s create something
             <span className="block text-zinc-400">
               worth remembering.
             </span>

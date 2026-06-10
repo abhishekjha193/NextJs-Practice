@@ -1,90 +1,164 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MapPin, Calendar, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  MapPin,
+  Calendar,
+  CheckCircle2,
+  ChevronDown,
+} from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { experiences } from "@/lib/data";
 
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.1 },
+    transition: {
+      staggerChildren: 0.08,
+    },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.5 },
+    transition: {
+      duration: 0.4,
+    },
   },
 };
 
 function Card({ exp }: any) {
+  const [open, setOpen] = useState(false);
+
   return (
     <motion.div
+      layout
       variants={item}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ y: -3 }}
       className="
-        relative group rounded-xl border p-4
-        backdrop-blur-xl bg-[var(--surface)]
-        border-[var(--border)]
+      group relative overflow-hidden
+      rounded-2xl
+      border border-[var(--border)]
+      bg-[var(--surface)]
+      backdrop-blur-xl
       "
     >
-      {/* glow */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.12),transparent_55%)]" />
+      <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.08),transparent_60%)]" />
 
-      <div className="relative flex flex-col gap-3">
+      <div className="relative p-4">
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-full text-left"
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+                {exp.role}
+              </h3>
 
-        {/* TOP */}
-        <div className="flex flex-col sm:flex-row sm:justify-between gap-3">
+              <p className="mt-1 text-xs text-[var(--accent)]">
+                {exp.company}
+              </p>
+            </div>
 
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">
-              {exp.role}
-            </h3>
-
-            <p className="text-xs text-[var(--accent)]">{exp.company}</p>
-
-            {exp.currentlyWorking && (
-              <div className="flex items-center gap-2 mt-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative h-2 w-2 rounded-full bg-green-500" />
-                </span>
-                <span className="text-[10px] text-green-400">Active</span>
-              </div>
-            )}
+            <motion.div
+              animate={{
+                rotate: open ? 180 : 0,
+              }}
+            >
+              <ChevronDown
+                size={16}
+                className="text-[var(--text-secondary)]"
+              />
+            </motion.div>
           </div>
 
-          {/* DATE + LOCATION */}
-          <div className="text-[10px] text-[var(--text-tertiary)] sm:text-right flex sm:flex-col gap-2 sm:gap-1">
+          <div className="mt-3 flex flex-wrap gap-3 text-[10px] text-[var(--text-tertiary)]">
             <div className="flex items-center gap-1">
               <Calendar size={10} />
               {exp.duration}
             </div>
-            <div className="flex items-center gap-1">
-              <MapPin size={10} />
-              {exp.location}
-            </div>
+
+            {exp.currentlyWorking && (
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                  <span className="relative h-2 w-2 rounded-full bg-green-500" />
+                </span>
+
+                <span className="text-green-400">
+                  Active
+                </span>
+              </div>
+            )}
           </div>
+        </button>
 
-        </div>
-
-        {/* ACHIEVEMENTS */}
-        <div className="space-y-2">
-          {exp.achievements.slice(0, 2).map((a: string, i: number) => (
-            <div
-              key={i}
-              className="flex items-start gap-2 text-[11px] text-[var(--text-secondary)]"
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                height: 0,
+              }}
+              animate={{
+                opacity: 1,
+                height: "auto",
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              className="overflow-hidden"
             >
-              <CheckCircle2 size={12} className="text-[var(--accent)] mt-0.5" />
-              {a}
-            </div>
-          ))}
-        </div>
+              <div className="mt-4 border-t border-[var(--border)] pt-4">
+                <div className="mb-4 flex items-center gap-1 text-[10px] text-[var(--text-tertiary)]">
+                  <MapPin size={10} />
+                  {exp.location}
+                </div>
+
+                <div className="space-y-2">
+                  {exp.achievements.map(
+                    (achievement: string, i: number) => (
+                      <motion.div
+                        key={i}
+                        initial={{
+                          opacity: 0,
+                          x: -10,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          delay: i * 0.05,
+                        }}
+                        className="flex items-start gap-2 text-[11px] text-[var(--text-secondary)]"
+                      >
+                        <CheckCircle2
+                          size={12}
+                          className="mt-0.5 shrink-0 text-[var(--accent)]"
+                        />
+
+                        <span>{achievement}</span>
+                      </motion.div>
+                    )
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </motion.div>
@@ -102,60 +176,56 @@ export default function ExperienceSection() {
 
   return (
     <SectionWrapper id="experience">
-
-      {/* TITLE */}
-      <div className="text-center mb-12 px-4">
-        <p className="text-xs text-red-500 tracking-widest">Journey</p>
-        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-primary)]">
-          Experience & Career
-        </h2>
-      </div>
-
-      {/* GRID */}
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 px-4">
-
-        {/* CENTER LINE (only desktop) */}
-        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-red-500/60 via-white/10 to-transparent" />
-
-        {/* WORK */}
-        <div className="flex flex-col gap-5">
-          <p className="text-xs text-red-500 tracking-widest text-center md:text-left">
-            Work Experience
+      <div className="px-4">
+        <div className="mb-10 text-center">
+          <p className="text-xs tracking-[0.25em] text-red-500 uppercase">
+            Journey
           </p>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="flex flex-col gap-4"
-          >
-            {workExp.map((exp) => (
-              <Card key={exp.id} exp={exp} />
-            ))}
-          </motion.div>
+          <h2 className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
+            Experience & Career
+          </h2>
         </div>
 
-        {/* EDUCATION */}
-        <div className="flex flex-col gap-5">
-          <p className="text-xs text-red-500 tracking-widest text-center md:text-left">
-            Education / Career
-          </p>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div>
+            <p className="mb-4 text-xs tracking-widest text-red-500 uppercase">
+              Work Experience
+            </p>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="flex flex-col gap-4"
-          >
-            {education.map((exp) => (
-              <Card key={exp.id} exp={exp} />
-            ))}
-          </motion.div>
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              {workExp.map((exp) => (
+                <Card key={exp.id} exp={exp} />
+              ))}
+            </motion.div>
+          </div>
+
+          <div>
+            <p className="mb-4 text-xs tracking-widest text-red-500 uppercase">
+              Education
+            </p>
+
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              {education.map((exp) => (
+                <Card key={exp.id} exp={exp} />
+              ))}
+            </motion.div>
+          </div>
         </div>
-
       </div>
     </SectionWrapper>
   );
 }
+

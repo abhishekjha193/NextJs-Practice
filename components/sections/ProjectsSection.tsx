@@ -16,18 +16,13 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 import { projects } from "@/lib/data";
 
 const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-
+  hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-
     transition: {
-      delay: i * 0.12,
-      duration: 0.6,
+      delay: i * 0.1,
+      duration: 0.5,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -42,12 +37,12 @@ const ProjectCard = memo(
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        whileHover={{ y: -8 }}
+        whileHover={{ y: -6 }}
         className="
           group relative overflow-hidden
-          rounded-[32px]
+          rounded-2xl
           border
-          transition-all duration-500
+          transition-all duration-300
           backdrop-blur-2xl
         "
         style={{
@@ -56,114 +51,41 @@ const ProjectCard = memo(
           boxShadow: "0 20px 60px rgba(0,0,0,0.14)",
         }}
       >
-        {/* Glow */}
-        <div
-          className="
-            absolute inset-0 opacity-0
-            group-hover:opacity-100
-            transition duration-500
-            bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.16),transparent_38%)]
-          "
-        />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.16),transparent_40%)]" />
 
-        {/* Top Blur */}
-        <div
-          className="
-            absolute -top-24 right-0
-            h-52 w-52 rounded-full
-            blur-3xl opacity-20
-          "
-          style={{
-            background: "rgb(239 68 68)",
-          }}
-        />
-
-        {/* Thumbnail */}
         <div className="relative aspect-[16/9] overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="
-              object-cover
-              transition duration-700
-              group-hover:scale-105
-            "
+            className="object-cover transition duration-700 group-hover:scale-105"
           />
 
-          {/* Overlay */}
-          <div
-            className="
-              absolute inset-0
-              bg-gradient-to-t
-              from-black/70
-              via-black/10
-              to-transparent
-            "
-          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-          {/* Badge */}
-          <div
-            className="
-              absolute left-4 top-4
-              inline-flex items-center gap-2
-              rounded-full
-              border
-              px-3 py-1.5
-              text-[11px]
-              font-medium
-              backdrop-blur-xl
-            "
-            style={{
-              borderColor: "rgba(255,255,255,0.12)",
-              background: "rgba(0,0,0,0.4)",
-              color: "white",
-            }}
-          >
-            <Sparkles size={11} className="text-red-400" />
-            Featured Project
+          <div className="absolute left-2 top-2 md:left-4 md:top-4 flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2 py-0.5 md:px-3 md:py-1 text-[9px] md:text-[11px] text-white">
+            <Sparkles size={10} className="text-red-400" />
+            Featured
           </div>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 p-7 md:p-8">
-          {/* Title */}
-          <h3
-            className="
-              text-2xl md:text-3xl
-              font-bold tracking-tight
-            "
-            style={{
-              color: "var(--text-primary)",
-            }}
-          >
+        <div className="p-4 md:p-8">
+          <h3 className="text-lg md:text-3xl font-bold tracking-tight text-[var(--text-primary)]">
             {project.title}
           </h3>
 
-          {/* Description */}
-          <p
-            className="
-              mt-4
-              text-sm md:text-[15px]
-              leading-7
-            "
-            style={{
-              color: "var(--text-secondary)",
-            }}
-          >
+          <p className="mt-2 md:mt-4 text-xs md:text-[15px] leading-5 md:leading-7 text-[var(--text-secondary)]">
             {project.description}
           </p>
 
-          {/* Tech Stack */}
-          <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-3 md:mt-7 flex flex-wrap gap-1.5 md:gap-2">
             {project.tech.map((tech) => (
               <span
                 key={tech}
                 className="
-                  rounded-full
-                  border
-                  px-3 py-1.5
-                  text-[11px]
+                  rounded-full border
+                  px-2 py-0.5 md:px-3 md:py-1.5
+                  text-[9px] md:text-[11px]
                   font-medium
                 "
                 style={{
@@ -177,44 +99,32 @@ const ProjectCard = memo(
             ))}
           </div>
 
-          {/* Buttons */}
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-4 md:mt-8 flex flex-col sm:flex-row gap-2">
             <Link
               href={project.liveUrl}
               target="_blank"
               className="
-                inline-flex items-center gap-2
-                rounded-2xl
-                px-5 py-3
-                text-sm font-semibold
-                text-white
-                transition-all duration-300
-                hover:scale-[1.03]
+                flex items-center justify-center gap-2
+                rounded-xl
+                px-4 py-2 md:px-5 md:py-3
+                text-xs md:text-sm font-semibold text-white
+                bg-red-600 hover:bg-red-500
+                transition
               "
-              style={{
-                background:
-                  "linear-gradient(135deg,rgb(239 68 68),rgb(220 38 38))",
-
-                boxShadow:
-                  "0 12px 30px rgba(239,68,68,0.28)",
-              }}
             >
-              Live Preview
-
-              <ArrowUpRight size={16} />
+              Live <ArrowUpRight size={14} />
             </Link>
 
             <Link
               href={project.githubUrl}
               target="_blank"
               className="
-                inline-flex items-center gap-2
-                rounded-2xl
+                flex items-center justify-center gap-2
+                rounded-xl
                 border
-                px-5 py-3
-                text-sm font-medium
-                transition-all duration-300
-                hover:scale-[1.03]
+                px-4 py-2 md:px-5 md:py-3
+                text-xs md:text-sm
+                transition
               "
               style={{
                 borderColor: "var(--border)",
@@ -222,9 +132,8 @@ const ProjectCard = memo(
                 color: "var(--text-primary)",
               }}
             >
-              <Github size={16} />
-
-              Source Code
+              <Github size={14} />
+              Code
             </Link>
           </div>
         </div>
@@ -238,16 +147,14 @@ ProjectCard.displayName = "ProjectCard";
 export default function ProjectsSection() {
   return (
     <SectionWrapper id="projects">
-      {/* Header */}
-      <div className="mb-14 text-center">
+      {/* HEADER */}
+      <div className="mb-10 md:mb-14 text-center px-2">
         <div
           className="
             inline-flex items-center gap-2
-            rounded-full
-            border
-            px-4 py-1.5
-            text-xs font-medium
-            backdrop-blur-xl
+            rounded-full border
+            px-3 py-1 md:px-4 md:py-1.5
+            text-[10px] md:text-xs font-medium
           "
           style={{
             borderColor: "var(--border)",
@@ -255,74 +162,54 @@ export default function ProjectsSection() {
             color: "var(--text-secondary)",
           }}
         >
-          <BriefcaseBusiness
-            size={13}
-            className="text-red-500"
-          />
-
+          <BriefcaseBusiness size={12} className="text-red-500" />
           Selected Work
         </div>
 
         <h2
           className="
-            mt-6
-            text-4xl md:text-6xl
+            mt-4 md:mt-6
+            text-2xl md:text-6xl
             font-bold tracking-tight
+            text-[var(--text-primary)]
           "
-          style={{
-            color: "var(--text-primary)",
-          }}
         >
           Featured Projects
         </h2>
 
         <p
           className="
-            mx-auto mt-5
+            mx-auto mt-2 md:mt-5
             max-w-2xl
-            text-sm md:text-base
-            leading-7
+            text-xs md:text-base
+            leading-5 md:leading-7
+            text-[var(--text-secondary)]
           "
-          style={{
-            color: "var(--text-secondary)",
-          }}
         >
-          Production-grade full stack applications focused on
-          scalable backend architecture, premium UI systems,
-          AI integrations, and real-world performance.
+          Production-grade full stack applications focused on scalable backend,
+          premium UI systems, AI integrations, and real-world performance.
         </p>
       </div>
 
-      {/* Grid */}
-      <div
-        className="
-          grid grid-cols-1
-          xl:grid-cols-2
-          gap-8
-        "
-      >
+      {/* GRID */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 md:gap-8">
         {projects.map((project, i) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            i={i}
-          />
+          <ProjectCard key={project.id} project={project} i={i} />
         ))}
       </div>
 
-      {/* Bottom CTA */}
-      <div className="mt-16 flex justify-center">
+      {/* CTA */}
+      <div className="mt-10 md:mt-16 flex justify-center">
         <Link
           href="https://github.com/abhishekjha193"
           target="_blank"
           className="
-            group inline-flex items-center gap-3
-            rounded-2xl
+            flex items-center gap-2
+            rounded-xl
             border
-            px-7 py-4
-            text-sm font-medium
-            transition-all duration-300
-            hover:-translate-y-1
+            px-5 py-3
+            text-xs md:text-sm
+            transition
           "
           style={{
             borderColor: "var(--border)",
@@ -330,18 +217,9 @@ export default function ProjectsSection() {
             color: "var(--text-primary)",
           }}
         >
-          <Github size={18} />
-
-          View Complete GitHub
-
-          <ArrowUpRight
-            size={16}
-            className="
-              transition-transform
-              group-hover:translate-x-1
-              group-hover:-translate-y-1
-            "
-          />
+          <Github size={16} />
+          View GitHub
+          <ArrowUpRight size={14} />
         </Link>
       </div>
     </SectionWrapper>

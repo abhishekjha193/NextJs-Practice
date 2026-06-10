@@ -8,14 +8,19 @@ import { useRef, useState } from "react";
 
 const stagger = {
   container: {
-    animate: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+    animate: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
   },
   item: {
-    initial: { opacity: 0, y: 12 },
+    initial: { opacity: 0, y: 10 },
     animate: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     },
   },
 };
@@ -29,8 +34,8 @@ function MagneticImage() {
     if (!r) return;
 
     setPos({
-      x: (e.clientX - (r.left + r.width / 2)) * 0.5,
-      y: (e.clientY - (r.top + r.height / 2)) * 0.5,
+      x: (e.clientX - (r.left + r.width / 2)) * 0.2,
+      y: (e.clientY - (r.top + r.height / 2)) * 0.2,
     });
   };
 
@@ -40,15 +45,23 @@ function MagneticImage() {
       onMouseMove={move}
       onMouseLeave={() => setPos({ x: 0, y: 0 })}
       animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: "spring", stiffness: 120, damping: 16 }}
-      className="relative z-20 mx-auto w-[160px] sm:w-[210px] md:w-[250px]"
+      transition={{ type: "spring", stiffness: 120, damping: 18 }}
+      className="
+        relative z-10 mx-auto
+        w-[170px] sm:w-[200px] md:w-[240px] lg:w-[280px]
+      "
     >
       <Image
         src="/b.png"
-        alt="Abhishek"
-        width={400}
-        height={400}
-        className="w-full h-auto object-contain select-none pointer-events-none"
+        alt="profile"
+        width={600}
+        height={600}
+        className="
+          w-full h-auto
+          object-contain
+          select-none pointer-events-none
+          drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]
+        "
         priority
       />
     </motion.div>
@@ -59,37 +72,29 @@ function Button({
   children,
   href,
   primary,
-  shine,
 }: {
   children: React.ReactNode;
   href: string;
   primary?: boolean;
-  shine?: boolean;
 }) {
   return (
     <a
       href={href}
       className={`
-        relative inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-medium
-        transition-all duration-300 active:scale-95 overflow-hidden w-full sm:w-auto group
+        relative inline-flex items-center justify-center
+        w-full sm:w-auto
+        px-4 py-2.5 sm:px-6 sm:py-3
+        rounded-xl text-xs sm:text-sm font-medium
+        transition-all duration-300 active:scale-95
+        overflow-hidden
         ${
           primary
-            ? "bg-red-500 text-white shadow-[0_10px_30px_rgba(239,68,68,0.35)]"
-            : "border border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/30 backdrop-blur-md text-black dark:text-white"
+            ? "bg-red-500 text-white shadow-lg shadow-red-500/30"
+            : "border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-black/30 text-zinc-900 dark:text-white backdrop-blur-md"
         }
       `}
     >
       <span className="relative z-10">{children}</span>
-
-      {/* hover sweep (FIXED visibility) */}
-      <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent -translate-x-full group-hover:translate-x-full" />
-
-      {/* premium shine (FIXED for both themes) */}
-      {shine && (
-        <span className="absolute inset-0 overflow-hidden rounded-xl">
-          <span className="absolute -top-1/2 left-[-70%] w-[45%] h-[220%] rotate-12 bg-gradient-to-r from-transparent via-red-400/20 to-transparent blur-md animate-shine" />
-        </span>
-      )}
     </a>
   );
 }
@@ -101,18 +106,18 @@ export default function HeroSection({
   const isOpen = status === "open";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 bg-background text-foreground overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-5 sm:px-6 overflow-hidden">
 
-      {/* LightRays */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
           raysColor="#ef4444"
-          raysSpeed={0.35}
-          lightSpread={0.75}
-          rayLength={2.2}
+          raysSpeed={0.25}
+          lightSpread={0.7}
+          rayLength={2}
           followMouse
-          mouseInfluence={0.05}
+          mouseInfluence={0.04}
           noiseAmount={0}
           distortion={0}
           pulsating={false}
@@ -121,29 +126,26 @@ export default function HeroSection({
         />
       </div>
 
-      {/* radial glow */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(239,68,68,0.12),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(239,68,68,0.10),transparent_65%)]" />
 
       <motion.div
         variants={stagger.container}
         initial="initial"
         animate="animate"
-        className="relative z-10 max-w-3xl w-full text-center"
+        className="relative z-10 w-full max-w-3xl text-center"
       >
 
         {/* STATUS */}
-        <motion.div variants={stagger.item} className="flex justify-center mb-2 mt-3">
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/30 backdrop-blur-md text-sm">
+        <motion.div variants={stagger.item} className="flex justify-center mb-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-black/30 backdrop-blur-md text-[11px] sm:text-sm">
             <Briefcase size={14} />
             {isOpen ? (
               <span>
-                <span className="text-green-500 font-medium">Open to Work</span>{" "}
-                • Available for opportunities
+                <span className="text-green-500 font-medium">Open</span> • Available For Opportunities
               </span>
             ) : (
               <span>
-                Currently at{" "}
-                <span className="text-red-500 font-medium">{currentCompany}</span>
+                At <span className="text-red-500">{currentCompany}</span>
               </span>
             )}
           </div>
@@ -152,25 +154,31 @@ export default function HeroSection({
         {/* NAME */}
         <motion.h1
           variants={stagger.item}
-          className="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight"
+          className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight"
         >
           Abhishek Jha
         </motion.h1>
 
         {/* ROLE */}
-        <motion.p variants={stagger.item} className="mt-2 text-lg sm:text-xl opacity-80">
-          Full Stack Web Developer
+        <motion.p
+          variants={stagger.item}
+          className="mt-1 text-sm sm:text-lg text-zinc-600 dark:text-zinc-300"
+        >
+          Full Stack Developer
         </motion.p>
 
-        {/* IMAGE */}
-        <motion.div variants={stagger.item} className="my-1">
+        {/* IMAGE (FIXED MOBILE SIZE ISSUE) */}
+        <motion.div
+          variants={stagger.item}
+          className="my-5 sm:my-6 flex justify-center"
+        >
           <MagneticImage />
         </motion.div>
 
         {/* TAGLINE */}
         <motion.p
           variants={stagger.item}
-          className="text-sm sm:text-base max-w-xl mx-auto opacity-70 leading-relaxed"
+          className="text-xs sm:text-base max-w-xl mx-auto text-zinc-500 dark:text-zinc-400 leading-relaxed px-2"
         >
           I build scalable, performant and clean UI-driven web applications from idea to production.
         </motion.p>
@@ -178,17 +186,17 @@ export default function HeroSection({
         {/* BUTTONS */}
         <motion.div
           variants={stagger.item}
-          className="flex flex-col sm:flex-row gap-2 justify-center mt-5"
+          className="flex flex-col sm:flex-row gap-2 justify-center mt-5 px-2"
         >
           <Button href="#projects" primary>
             View Projects
           </Button>
 
-          <Button href="/resume.pdf" shine>
+          <Button href="/resume.pdf">
             Download Resume
           </Button>
 
-          <Button href="#contact" shine>
+          <Button href="#contact">
             Contact Me
           </Button>
         </motion.div>
@@ -196,12 +204,12 @@ export default function HeroSection({
         {/* TECH STACK */}
         <motion.div
           variants={stagger.item}
-          className="flex flex-wrap justify-center gap-2 mt-8"
+          className="flex flex-wrap justify-center gap-2 mt-6 px-2"
         >
           {["React", "Next.js", "TypeScript", "Node.js", "MongoDB"].map((t) => (
             <span
               key={t}
-              className="px-3 py-1 text-xs rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/30"
+              className="px-2.5 py-1 text-[10px] sm:text-xs rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-black/30 text-zinc-600 dark:text-zinc-300"
             >
               {t}
             </span>
@@ -210,15 +218,18 @@ export default function HeroSection({
 
       </motion.div>
 
-      {/* SCROLL INDICATOR */}
+      {/* SCROLL */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 opacity-60"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-50"
       >
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-          <ArrowDown size={16} />
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <ArrowDown size={14} />
         </motion.div>
       </motion.div>
 

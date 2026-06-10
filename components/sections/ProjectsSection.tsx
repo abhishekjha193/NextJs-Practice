@@ -39,11 +39,7 @@ const ProjectCard = memo(
         viewport={{ once: true }}
         whileHover={{ y: -6 }}
         className="
-          group relative overflow-hidden
-          rounded-2xl
-          border
-          transition-all duration-300
-          backdrop-blur-2xl
+          group relative overflow-hidden rounded-2xl border transition-all duration-300 backdrop-blur-2xl
         "
         style={{
           background: "var(--surface)",
@@ -51,9 +47,17 @@ const ProjectCard = memo(
           boxShadow: "0 20px 60px rgba(0,0,0,0.14)",
         }}
       >
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.16),transparent_40%)]" />
+        {/* HOVER EFFECT */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle at top right, rgba(239,68,68,0.16), transparent 40%)",
+          }}
+        />
 
-        <div className="relative aspect-[16/9] overflow-hidden">
+        {/* IMAGE */}
+        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
           <Image
             src={project.image}
             alt={project.title}
@@ -61,33 +65,29 @@ const ProjectCard = memo(
             className="object-cover transition duration-700 group-hover:scale-105"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
-          <div className="absolute left-2 top-2 md:left-4 md:top-4 flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2 py-0.5 md:px-3 md:py-1 text-[9px] md:text-[11px] text-white">
+          <div className="absolute left-2 top-2 md:left-4 md:top-4 flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2 py-0.5 md:px-3 md:py-1 text-[9px] md:text-[11px] text-white pointer-events-none">
             <Sparkles size={10} className="text-red-400" />
             Featured
           </div>
         </div>
 
-        <div className="p-4 md:p-8">
+        {/* CONTENT */}
+        <div className="p-4 md:p-8 flex flex-col gap-4">
           <h3 className="text-lg md:text-3xl font-bold tracking-tight text-[var(--text-primary)]">
             {project.title}
           </h3>
 
-          <p className="mt-2 md:mt-4 text-xs md:text-[15px] leading-5 md:leading-7 text-[var(--text-secondary)]">
+          <p className="text-xs md:text-[15px] text-[var(--text-secondary)] leading-5 md:leading-7">
             {project.description}
           </p>
 
-          <div className="mt-3 md:mt-7 flex flex-wrap gap-1.5 md:gap-2">
+          <div className="flex flex-wrap gap-1.5 md:gap-2">
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="
-                  rounded-full border
-                  px-2 py-0.5 md:px-3 md:py-1.5
-                  text-[9px] md:text-[11px]
-                  font-medium
-                "
+                className="rounded-full border px-2 py-0.5 md:px-3 md:py-1.5 text-[9px] md:text-[11px] font-medium"
                 style={{
                   borderColor: "var(--border)",
                   background: "rgba(255,255,255,0.04)",
@@ -99,36 +99,24 @@ const ProjectCard = memo(
             ))}
           </div>
 
-          <div className="mt-4 md:mt-8 flex flex-col sm:flex-row gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
+            {/* LIVE LINK */}
             <Link
               href={project.liveUrl}
               target="_blank"
-              className="
-                flex items-center justify-center gap-2
-                rounded-xl
-                px-4 py-2 md:px-5 md:py-3
-                text-xs md:text-sm font-semibold text-white
-                bg-red-600 hover:bg-red-500
-                transition
-              "
+              className="flex items-center justify-center gap-2 rounded-xl px-4 py-2 md:px-5 md:py-3 text-xs md:text-sm font-semibold text-white bg-red-600 hover:bg-red-500 transition"
             >
               Live <ArrowUpRight size={14} />
             </Link>
 
+            {/* GITHUB LINK */}
             <Link
               href={project.githubUrl}
               target="_blank"
-              className="
-                flex items-center justify-center gap-2
-                rounded-xl
-                border
-                px-4 py-2 md:px-5 md:py-3
-                text-xs md:text-sm
-                transition
-              "
+              className="flex items-center justify-center gap-2 rounded-xl border px-4 py-2 md:px-5 md:py-3 text-xs md:text-sm transition"
               style={{
                 borderColor: "var(--border)",
-                background: "rgba(255,255,255,0.03)",
+                background: "var(--surface)",
                 color: "var(--text-primary)",
               }}
             >

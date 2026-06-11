@@ -147,15 +147,6 @@ export default function HeroSection() {
           <MagneticImage />
         </motion.div>
 
-        {/* TAGLINE */}
-        {/* <motion.p
-          variants={stagger.item}
-          className="text-xs sm:text-base max-w-xl mx-auto text-zinc-500 dark:text-zinc-400 leading-relaxed px-2"
-        >
-          I build scalable, performant and clean UI-driven web applications from
-          idea to production.
-        </motion.p> */}
-
         {/* OPEN TO WORK BADGE */}
         <motion.div
           variants={stagger.item}
@@ -195,35 +186,159 @@ export default function HeroSection() {
           <Button href="#contact">Contact Me</Button>
         </motion.div>
 
+{/* SCROLL INDICATOR - LEFT */}
+<div className="
+  pointer-events-none absolute
+  left-2 sm:left-4 md:left-8 lg:left-14 xl:left-20
+  top-16 sm:top-20 md:top-24 lg:top-40
+  z-30
+  opacity-25 sm:opacity-30 md:opacity-40
+  transition-opacity
+">
+  <div className="flex flex-col items-center gap-3 scale-75 sm:scale-90 md:scale-100">
+
+    {/* MOUSE */}
+    <div className="
+      h-12 w-7 sm:h-14 sm:w-8 md:h-16 md:w-9 lg:h-20 lg:w-10
+      rounded-full border border-zinc-400/40 dark:border-red-500/40
+      flex items-center justify-center backdrop-blur-sm
+    ">
+      <div className="w-1 h-3 sm:h-4 bg-red-500 rounded-full animate-scroll-wheel" />
+    </div>
+
+    {/* ARROW */}
+    <svg
+      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500 animate-bounce"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 5v14M19 12l-7 7-7-7" />
+    </svg>
+
+  </div>
+</div>
+
+{/* SCROLL INDICATOR - RIGHT */}
+<div className="
+  pointer-events-none absolute
+  right-2 sm:right-4 md:right-8 lg:right-14 xl:right-20
+  top-16 sm:top-20 md:top-24 lg:top-40
+  z-30
+  opacity-25 sm:opacity-30 md:opacity-40
+  transition-opacity
+">
+  <div className="flex flex-col items-center gap-3 scale-75 sm:scale-90 md:scale-100">
+
+    {/* MOUSE */}
+    <div className="
+      h-12 w-7 sm:h-14 sm:w-8 md:h-16 md:w-9 lg:h-20 lg:w-10
+      rounded-full border border-zinc-400/40 dark:border-red-500/40
+      flex items-center justify-center backdrop-blur-sm
+    ">
+      <div className="w-1 h-3 sm:h-4 bg-red-500 rounded-full animate-scroll-wheel" />
+    </div>
+
+    {/* ARROW */}
+    <svg
+      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500 animate-bounce"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 5v14M19 12l-7 7-7-7" />
+    </svg>
+
+  </div>
+</div>
+
         {/* TECH STACK */}
         <motion.div
           variants={stagger.item}
-          className="flex flex-wrap justify-center gap-2 mt-7 px-2"
+          className="
+    relative mt-5 w-full overflow-hidden
+    bg-transparent
+  "
         >
-          {["React", "Express.js", "TypeScript", "Node.js", "MongoDB"].map(
-            (t) => (
-              <span
-                key={t}
-                className="px-2.5 py-1 text-[10px] sm:text-xs rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-black/30 text-zinc-600 dark:text-zinc-300"
-              >
-                {t}
-              </span>
-            ),
-          )}
-        </motion.div>
-      </motion.div>
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 opacity-50"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <ArrowDown size={14} />
+          {/* LEFT LINE */}
+          <div className="absolute left-0 top-0 z-20 h-full w-px bg-gradient-to-b from-transparent via-red-500/40 to-transparent" />
+
+          {/* RIGHT LINE */}
+          <div className="absolute right-0 top-0 z-20 h-full w-px bg-gradient-to-b from-transparent via-red-500/40 to-transparent" />
+
+          <div className="overflow-hidden py-5">
+            <div className="marquee-track flex w-max gap-3">
+              {[
+                "React",
+                "TypeScript",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "Tailwind CSS",
+                "LangGraph",
+                "LangChain",
+                "REST APIs",
+                "JWT Auth",
+                "Git",
+                "Postman",
+                "Redux",
+                "Redis",
+                "MySQL",
+                "Vercel",
+
+                // duplicate for smooth loop
+                "React",
+                "TypeScript",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "Tailwind CSS",
+                "LangGraph",
+                "LangChain",
+                "REST APIs",
+                "JWT Auth",
+                "Git",
+                "Postman",
+                "Redux",
+                "Redis",
+                "MySQL",
+                "Vercel",
+              ].map((tech, index) => (
+                <span
+                  key={`${tech}-${index}`}
+                  className="
+            shrink-0
+            rounded-full
+            border border-zinc-200/60 dark:border-zinc-800/60
+            bg-white/60 dark:bg-zinc-900/40
+            backdrop-blur-xl
+
+            px-4 py-2
+            text-xs sm:text-sm
+            font-medium
+
+            text-zinc-700 dark:text-zinc-300
+
+            transition-all duration-300
+
+            hover:-translate-y-1
+            hover:scale-105
+
+            hover:border-red-400/60
+            hover:text-red-500 dark:hover:text-red-400
+
+            hover:shadow-[0_0_18px_rgba(255,0,0,0.18)]
+
+            cursor-default
+          "
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     </section>

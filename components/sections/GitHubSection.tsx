@@ -1,35 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Activity, Code, Zap, Layers, GitCommit, Star } from "lucide-react";
+import { ExternalLink, GitCommit } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
 interface Props {
   data: any;
 }
 
-function getColor(count: number) {
-  if (count === 0) return "bg-zinc-300/40 dark:bg-zinc-800/60";
-  if (count < 2) return "bg-red-500/20";
-  if (count < 5) return "bg-red-500/40";
-  if (count < 10) return "bg-red-500/70";
-  return "bg-red-500";
-}
-
 function Grid({ weeks }: any) {
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-[720px] grid grid-rows-7 grid-flow-col gap-[2px] p-2">
+      <div className="min-w-[680px] grid grid-rows-7 grid-flow-col gap-[3px]">
         {weeks.map((w: any, i: number) =>
-          w.contributionDays.map((d: any, j: number) => (
-            <div
-              key={`${i}-${j}`}
-              title={`${d.contributionCount} contributions on ${d.date}`}
-              className={`w-[9px] h-[9px] rounded-[3px] transition-all duration-300 hover:scale-125 ${getColor(
-                d.contributionCount
-              )}`}
-            />
-          ))
+          w.contributionDays.map((d: any, j: number) => {
+            const level =
+              d.contributionCount === 0
+                ? "bg-zinc-200/40 dark:bg-zinc-800/40"
+                : d.contributionCount < 3
+                ? "bg-red-500/30"
+                : d.contributionCount < 6
+                ? "bg-red-500/50"
+                : d.contributionCount < 10
+                ? "bg-red-500/80"
+                : "bg-red-500";
+
+            return (
+              <div
+                key={`${i}-${j}`}
+                title={`${d.contributionCount} contributions`}
+                className={`w-[8px] h-[8px] rounded-[2px] transition hover:scale-125 ${level}`}
+              />
+            );
+          })
         )}
       </div>
     </div>
@@ -40,7 +43,7 @@ export default function GitHubSection({ data }: Props) {
   if (!data) {
     return (
       <SectionWrapper id="github">
-        <div className="text-center text-sm text-zinc-500 dark:text-zinc-400 py-10">
+        <div className="text-center text-sm text-zinc-500 py-10">
           Loading GitHub activity...
         </div>
       </SectionWrapper>
@@ -50,161 +53,84 @@ export default function GitHubSection({ data }: Props) {
   const weeks = data.weeks;
   const total = data.totalContributions;
 
-  const totalDays = weeks?.reduce(
-    (acc: number, w: any) =>
-      acc + w.contributionDays.filter((d: any) => d.contributionCount > 0).length,
-    0
-  );
-
   return (
     <SectionWrapper id="github">
-      <div className="space-y-6">
+      <div className="max-w-4xl mx-auto">
 
         {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center flex flex-col items-center gap-2"
+          className="text-center mb-4"
         >
-          <p className="text-[10px] tracking-[0.35em] text-red-500 uppercase">
-            Developer Profile
+          <p className="text-[10px] tracking-[0.4em] text-red-500 uppercase">
+            GitHub Activity
           </p>
 
-          <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white">
-            GitHub Activity
+          <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">
+            Contribution Heatmap
           </h2>
 
           <a
             href={data.url}
             target="_blank"
-            className="text-xs md:text-sm text-zinc-500 dark:text-zinc-400 hover:text-red-500 flex items-center gap-1 transition"
+            className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-red-500 transition"
           >
             @{data.login}
-            <ExternalLink size={14} />
+            <ExternalLink size={12} />
           </a>
         </motion.div>
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+        {/* SINGLE COMPACT CARD */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="
+            rounded-2xl border
+            border-zinc-200/60 dark:border-zinc-800
+            bg-white/60 dark:bg-black/30
+            backdrop-blur-xl
+            p-4 md:p-5
+          "
+        >
 
-          {/* LEFT CARD */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black/60 backdrop-blur-xl p-5 hover:border-red-500/40 transition"
-          >
-            <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-              <Activity size={14} className="text-red-500" />
-              Overview
-            </div>
+          {/* INLINE STATS */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
 
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <div>
-                <p className="text-2xl font-bold text-zinc-900 dark:text-white">
+            <div className="flex items-center gap-4 text-xs text-zinc-500">
+              <span>
+                <span className="text-zinc-900 dark:text-white font-semibold">
                   {data.repos}
-                </p>
-                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                  Repos
-                </p>
-              </div>
+                </span>{" "}
+                repos
+              </span>
 
-              <div>
-                <p className="text-2xl font-bold text-red-500">
+              <span>
+                <span className="text-red-500 font-semibold">
                   {total}
-                </p>
-                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                  Contributions
-                </p>
-              </div>
-
-              <div className="col-span-2">
-                <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                  Active Days:{" "}
-                  <span className="font-semibold text-zinc-900 dark:text-white">
-                    {totalDays}
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              {[
-                { icon: Code, label: "Clean" },
-                { icon: Zap, label: "Fast" },
-                { icon: Layers, label: "Scalable" },
-              ].map((i, idx) => {
-                const Icon = i.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-black/40 p-2 text-center hover:border-red-500/40 transition"
-                  >
-                    <Icon size={14} className="mx-auto text-red-500" />
-                    <p className="text-[10px] mt-1 text-zinc-500 dark:text-zinc-400">
-                      {i.label}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* RIGHT CARD */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black/60 backdrop-blur-xl p-5 hover:border-red-500/40 transition"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
-                Contribution Heatmap
-              </h3>
-
-              <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                Last year activity
+                </span>{" "}
+                commits
               </span>
             </div>
 
-            {weeks?.length > 0 ? (
-              <Grid weeks={weeks} />
-            ) : (
-              <div className="text-center text-sm text-red-500 py-10">
-                No contribution data found
-              </div>
-            )}
-
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-black/40 hover:border-red-500/40 transition">
-                <div className="flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-white">
-                  <GitCommit size={14} className="text-red-500" />
-                  Consistency
-                </div>
-                <p className="text-[11px] mt-1 text-zinc-500 dark:text-zinc-400">
-                  Daily development workflow and commits.
-                </p>
-              </div>
-
-              <div className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-black/40 hover:border-red-500/40 transition">
-                <div className="flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-white">
-                  <Star size={14} className="text-red-500" />
-                  Impact
-                </div>
-                <p className="text-[11px] mt-1 text-zinc-500 dark:text-zinc-400">
-                  Production-grade open source contributions.
-                </p>
-              </div>
-
+            <div className="flex items-center gap-1 text-[10px] text-zinc-500">
+              <GitCommit size={12} className="text-red-500" />
+              Active dev
             </div>
-          </motion.div>
+          </div>
 
-        </div>
+          {/* GRAPH */}
+          {weeks?.length ? (
+            <Grid weeks={weeks} />
+          ) : (
+            <div className="text-center text-sm text-red-500 py-6">
+              No data available
+            </div>
+          )}
+
+        </motion.div>
       </div>
     </SectionWrapper>
   );

@@ -67,72 +67,55 @@ export const projects: Project[] = [
     gradient: "from-red-600/20 to-red-500/20",
   },
 
-  // {
-  //   id: "2",
+  {
+    id: "2",
 
-  //   title: "Snitch MERN Stack Clothing Platform",
+    title: "Snitch MERN Stack Clothing Platform (Coming Soon)",
 
-  //   description:
-  //     "Production-ready full-stack clothing e-commerce platform inspired by modern fashion brands with premium UI and scalable architecture.",
+    description:
+      "Production-ready full-stack clothing e-commerce platform inspired by modern fashion brands with premium UI and scalable architecture.",
 
-  //   longDescription:
-  //     "Built a modern MERN stack fashion platform featuring secure authentication, responsive shopping experience, product catalog management, cart functionality, and optimized frontend performance.",
+    longDescription:
+      "Built a modern MERN stack fashion platform featuring secure authentication, responsive shopping experience, product catalog management, cart functionality, and optimized frontend performance.",
 
-  //   tech: [
-  //     "MongoDB",
-  //     "Express.js",
-  //     "React.js",
-  //     "Node.js",
-  //     "Redux",
-  //     "Tailwind CSS",
-  //     "JWT",
-  //     "REST APIs",
-  //   ],
+    tech: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Redux",
+      "Tailwind CSS",
+      "JWT",
+      "REST APIs",
+    ],
 
-  //   image: "/snitch.png",
+    image: "/snitch.png",
 
-  //   liveUrl: "https://github.com/abhishekjha193/Snitch",
+    liveUrl: "https://github.com/abhishekjha193/Snitch",
 
-  //   githubUrl: "https://github.com/abhishekjha193/Snitch",
+    githubUrl: "https://github.com/abhishekjha193/Snitch",
 
-  //   featured: true,
+    featured: true,
 
-  //   gradient: "from-red-600/20 to-red-500/20",
-  // },
+    gradient: "from-red-600/20 to-red-500/20",
+  },
 
   
 ];
 
 export const experiences: Experience[] = [
-  // {
-  //   id: "1",
-  //   company: "Shreyains Coding School",
-  //   role: "MERN Stack Trainee (Apprenticeship)",
-  //   duration: "Aug 2025 – Present",
-  //   location: "Remote, India",
-
-  //   currentlyWorking: true,
-  //   achievements: [
-  //     "Undergoing full-stack MERN training with hands-on project development",
-  //     "Working on real-world applications using React, Node.js, Express, and MongoDB",
-  //     "Practicing authentication systems, REST APIs, and scalable backend architecture",
-  //     "Improving problem-solving and production-level coding skills",
-  //   ],
-  // },
-
   {
     id: "1",
     company: "Independent Projects (Self-Employed)",
     role: "Full Stack Web Developer",
     duration: "Mar 2026 – May 2026",
-    location: "Mumbai, Maharashtra, India",
-
+    location: "Mumbai, India",
     currentlyWorking: true,
     achievements: [
-      "Built multiple modern full stack MERN applications focused on AI integration, scalable backend systems, and responsive user experiences",
-      "Built a Snitch-inspired fashion e-commerce platform with product management, authentication, cart functionality, category filtering, and responsive UI",
-      "Developing an AI Model Arena platform that compares responses from multiple AI models and agents within a unified interface",
-      "Worked with React.js, Node.js, Express.js, MongoDB, REST APIs, JWT authentication, and modern frontend architecture to create real-world applications",
+      "Built MERN apps with AI integration and scalable architecture",
+      "Developed Snitch-style e-commerce with auth, cart & filtering",
+      "Working on AI Model Arena for multi-model response comparison",
+      "Used React, Node, Express, MongoDB, JWT, REST APIs",
     ],
   },
 
@@ -140,15 +123,15 @@ export const experiences: Experience[] = [
     id: "2",
     company: "Technohacks Solution Pvt. Ltd.",
     role: "Full Stack Developer Intern",
-    duration: "Jan 2026 - Feb 2026",
+    duration: "Jan 2026 – Feb 2026",
     location: "Remote, India",
     achievements: [
-      "Developed features for a task management platform using MERN stack",
-      "Implemented JWT-based authentication and role-based access control (RBAC)",
-      "Built RESTful APIs with MongoDB for CRUD operations and data handling",
-      "Created reusable React components for improved UI maintainability",
-      "Used Git/GitHub for version control and Postman for API testing",
-      "Debugged frontend-backend integration issues for smooth API communication",
+      "Built task management features using MERN stack",
+      "Implemented JWT auth and role-based access control",
+      "Developed REST APIs with MongoDB CRUD operations",
+      "Created reusable React components for UI scalability",
+      "Worked with Git, GitHub, and Postman for workflows",
+      "Debugged frontend–backend integration issues",
     ],
   },
 
@@ -157,19 +140,13 @@ export const experiences: Experience[] = [
     company: "Shree L. R. Tiwari College of Engineering",
     role: "Cyber Security Intern",
     duration: "Apr 2024 – May 2024",
-    location: "Mumbai, Maharashtra, India",
+    location: "Mumbai, India",
     achievements: [
-      "Completed hands-on training in Cyber Security and Ethical Hacking with practical exposure to Kali Linux, network security, vulnerability assessment, and security testing concepts",
-
-      "Worked on security-focused mini projects and simulations including phishing awareness demonstrations in controlled lab environments for educational purposes",
-
-      "Gained practical understanding of Kali Linux tools, penetration testing concepts, network and web application security",
-
-      "Developed awareness of cyber security fundamentals, threat analysis, and vulnerability assessment workflows",
-
-      "Prepared reports and documentation for security findings and testing activities",
-
-      "Focused on Network Security and Penetration Testing concepts during practical sessions",
+      "Hands-on training in ethical hacking and network security",
+      "Practiced vulnerability assessment using Kali Linux",
+      "Ran phishing awareness simulations in lab environment",
+      "Studied penetration testing and security fundamentals",
+      "Documented security findings and test reports",
     ],
   },
 
@@ -177,13 +154,13 @@ export const experiences: Experience[] = [
     id: "4",
     company: "Shree L.R. Tiwari College of Engineering",
     role: "B.E. Information Technology",
-    duration: "July 2022 - 2026",
-    location: "Mumbai, Maharashtra, India",
+    duration: "2022 – 2026",
+    location: "Mumbai, India",
     achievements: [
-      "Pursuing Bachelor of Engineering in Information Technology",
-      "Strong focus on full-stack web development and system design",
-      "Built multiple MERN stack projects including SaaS and AI-based applications",
-      "Active in competitive programming and web development practice",
+      "Pursuing B.E. in Information Technology",
+      "Focused on full-stack development and system design",
+      "Built multiple MERN + AI-based projects",
+      "Active in DSA and web development practice",
     ],
   },
 ];

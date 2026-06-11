@@ -17,7 +17,7 @@ export default function SectionWrapper({ id, children, className = "" }: Props) 
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5 }}
-      className={`max-w-6xl mx-auto px-6 py-14 ${className}`}
+      className={`max-w-6xl mx-auto px-6 py-10 ${className}`}
     >
       {children}
     </motion.section>

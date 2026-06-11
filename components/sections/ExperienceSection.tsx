@@ -7,30 +7,17 @@ import {
   Calendar,
   CheckCircle2,
   ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { experiences } from "@/lib/data";
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
 const item = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.4,
-    },
+    transition: { duration: 0.4 },
   },
 };
 
@@ -41,42 +28,31 @@ function Card({ exp }: any) {
     <motion.div
       layout
       variants={item}
-      whileHover={{ y: -3 }}
       className="
-      group relative overflow-hidden
-      rounded-2xl
-      border border-[var(--border)]
-      bg-[var(--surface)]
-      backdrop-blur-xl
+        group relative overflow-hidden
+        rounded-2xl
+        border border-[var(--border)]
+        bg-[var(--surface)]
+        backdrop-blur-xl
+        min-w-[260px] md:min-w-0
       "
     >
-      <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.08),transparent_60%)]" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.06),transparent_60%)]" />
 
       <div className="relative p-4">
-        <button
-          onClick={() => setOpen(!open)}
-          className="w-full text-left"
-        >
+        <button onClick={() => setOpen(!open)} className="w-full text-left">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="text-sm font-semibold text-[var(--text-primary)]">
                 {exp.role}
               </h3>
-
               <p className="mt-1 text-xs text-[var(--accent)]">
                 {exp.company}
               </p>
             </div>
 
-            <motion.div
-              animate={{
-                rotate: open ? 180 : 0,
-              }}
-            >
-              <ChevronDown
-                size={16}
-                className="text-[var(--text-secondary)]"
-              />
+            <motion.div animate={{ rotate: open ? 180 : 0 }}>
+              <ChevronDown size={16} />
             </motion.div>
           </div>
 
@@ -87,15 +63,9 @@ function Card({ exp }: any) {
             </div>
 
             {exp.currentlyWorking && (
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative h-2 w-2 rounded-full bg-green-500" />
-                </span>
-
-                <span className="text-green-400">
-                  Active
-                </span>
+              <div className="flex items-center gap-2 text-green-500">
+                <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                Active
               </div>
             )}
           </div>
@@ -104,64 +74,86 @@ function Card({ exp }: any) {
         <AnimatePresence>
           {open && (
             <motion.div
-              initial={{
-                opacity: 0,
-                height: 0,
-              }}
-              animate={{
-                opacity: 1,
-                height: "auto",
-              }}
-              exit={{
-                opacity: 0,
-                height: 0,
-              }}
-              transition={{
-                duration: 0.25,
-              }}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
               <div className="mt-4 border-t border-[var(--border)] pt-4">
-                <div className="mb-4 flex items-center gap-1 text-[10px] text-[var(--text-tertiary)]">
+                <div className="mb-3 flex items-center gap-1 text-[10px] text-[var(--text-tertiary)]">
                   <MapPin size={10} />
                   {exp.location}
                 </div>
 
                 <div className="space-y-2">
-                  {exp.achievements.map(
-                    (achievement: string, i: number) => (
-                      <motion.div
-                        key={i}
-                        initial={{
-                          opacity: 0,
-                          x: -10,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          x: 0,
-                        }}
-                        transition={{
-                          delay: i * 0.05,
-                        }}
-                        className="flex items-start gap-2 text-[11px] text-[var(--text-secondary)]"
-                      >
-                        <CheckCircle2
-                          size={12}
-                          className="mt-0.5 shrink-0 text-[var(--accent)]"
-                        />
-
-                        <span>{achievement}</span>
-                      </motion.div>
-                    )
-                  )}
+                  {exp.achievements.map((a: string, i: number) => (
+                    <div
+                      key={i}
+                      className="flex gap-2 text-[11px] text-[var(--text-secondary)]"
+                    >
+                      <CheckCircle2 size={12} className="text-[var(--accent)] mt-0.5" />
+                      <span>{a}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
     </motion.div>
+  );
+}
+
+function WorkSection({ data }: any) {
+  const [showAll, setShowAll] = useState(false);
+
+  const activeOnly = data.filter((e: any) => e.currentlyWorking);
+  const visible = showAll ? data : activeOnly;
+
+  return (
+    <div>
+      <p className="mb-4 text-xs tracking-widest text-red-500 uppercase">
+        Work Experience
+      </p>
+
+      <div className="flex gap-4 overflow-x-auto pb-4 md:block md:space-y-4 md:overflow-visible snap-x snap-mandatory">
+        {visible.map((exp: any) => (
+          <div key={exp.id} className="snap-center">
+            <Card exp={exp} />
+          </div>
+        ))}
+      </div>
+
+      {data.length > activeOnly.length && (
+        <button
+          onClick={() => setShowAll((p) => !p)}
+          className="mt-2 flex items-center gap-1 text-xs text-[var(--accent)]"
+        >
+          {showAll ? "View less" : "View more"}
+          <ChevronRight
+            size={14}
+            className={`transition ${showAll ? "rotate-90" : ""}`}
+          />
+        </button>
+      )}
+    </div>
+  );
+}
+
+function EducationSection({ data }: any) {
+  return (
+    <div>
+      <p className="mb-4 text-xs tracking-widest text-red-500 uppercase">
+        Education
+      </p>
+
+      <div className="space-y-4 md:block md:overflow-visible">
+        {data.map((exp: any) => (
+          <Card key={exp.id} exp={exp} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -177,55 +169,24 @@ export default function ExperienceSection() {
   return (
     <SectionWrapper id="experience">
       <div className="px-4">
-        <div className="mb-10 text-center">
+
+        <div className="text-center mb-10">
           <p className="text-xs tracking-[0.25em] text-red-500 uppercase">
             Journey
           </p>
-
           <h2 className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
             Experience & Career
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div>
-            <p className="mb-4 text-xs tracking-widest text-red-500 uppercase">
-              Work Experience
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {workExp.map((exp) => (
-                <Card key={exp.id} exp={exp} />
-              ))}
-            </motion.div>
-          </div>
+          <WorkSection data={workExp} />
 
-          <div>
-            <p className="mb-4 text-xs tracking-widest text-red-500 uppercase">
-              Education
-            </p>
+          <EducationSection data={education} />
 
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {education.map((exp) => (
-                <Card key={exp.id} exp={exp} />
-              ))}
-            </motion.div>
-          </div>
         </div>
       </div>
     </SectionWrapper>
   );
 }
-

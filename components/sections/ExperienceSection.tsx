@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -29,12 +30,12 @@ function Card({ exp }: any) {
       layout
       variants={item}
       className="
-        group relative overflow-hidden
-        rounded-2xl
-        border border-[var(--border)]
-        bg-[var(--surface)]
-        backdrop-blur-xl
-        min-w-[260px] md:min-w-0
+         group relative overflow-hidden
+    rounded-2xl
+    border border-[var(--border)]
+    bg-[var(--surface)]
+    backdrop-blur-xl
+    w-full
       "
     >
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_top_right,rgba(0,0,0,0.06),transparent_60%)]" />
@@ -42,13 +43,25 @@ function Card({ exp }: any) {
       <div className="relative p-4">
         <button onClick={() => setOpen(!open)} className="w-full text-left">
           <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="text-sm font-semibold text-[var(--text-primary)]">
-                {exp.role}
-              </h3>
-              <p className="mt-1 text-xs text-[var(--accent)]">
-                {exp.company}
-              </p>
+            <div className="flex items-start gap-3">
+              <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-[var(--border)] bg-white shrink-0">
+                <Image
+                  src={exp.logo}
+                  alt={exp.company}
+                  fill
+                  className="object-contain p-1"
+                />
+              </div>
+
+              <div>
+                <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+                  {exp.role}
+                </h3>
+
+                <p className="mt-1 text-xs text-[var(--accent)]">
+                  {exp.company}
+                </p>
+              </div>
             </div>
 
             <motion.div animate={{ rotate: open ? 180 : 0 }}>
@@ -91,7 +104,10 @@ function Card({ exp }: any) {
                       key={i}
                       className="flex gap-2 text-[11px] text-[var(--text-secondary)]"
                     >
-                      <CheckCircle2 size={12} className="text-[var(--accent)] mt-0.5" />
+                      <CheckCircle2
+                        size={12}
+                        className="text-[var(--accent)] mt-0.5"
+                      />
                       <span>{a}</span>
                     </div>
                   ))}
@@ -117,23 +133,22 @@ function WorkSection({ data }: any) {
         Work Experience
       </p>
 
-      <div className="flex gap-4 overflow-x-auto pb-4 md:block md:space-y-4 md:overflow-visible snap-x snap-mandatory">
+      <div className="space-y-4">
         {visible.map((exp: any) => (
-          <div key={exp.id} className="snap-center">
-            <Card exp={exp} />
-          </div>
+          <Card key={exp.id} exp={exp} />
         ))}
       </div>
 
       {data.length > activeOnly.length && (
         <button
           onClick={() => setShowAll((p) => !p)}
-          className="mt-2 flex items-center gap-1 text-xs text-[var(--accent)]"
+          className="mt-3 flex items-center gap-1 text-xs text-[var(--accent)]"
         >
           {showAll ? "View less" : "View more"}
+
           <ChevronRight
             size={14}
-            className={`transition ${showAll ? "rotate-90" : ""}`}
+            className={`transition-transform ${showAll ? "rotate-90" : ""}`}
           />
         </button>
       )}
@@ -159,32 +174,29 @@ function EducationSection({ data }: any) {
 
 export default function ExperienceSection() {
   const workExp = experiences.filter(
-    (e) => e.role !== "B.E. Information Technology"
+    (e) => e.role !== "B.E. Information Technology",
   );
 
   const education = experiences.filter(
-    (e) => e.role === "B.E. Information Technology"
+    (e) => e.role === "B.E. Information Technology",
   );
 
   return (
     <SectionWrapper id="experience">
       <div className="px-4">
-
         <div className="text-center mb-10">
           <p className="text-xs tracking-[0.25em] text-red-500 uppercase">
             Journey
           </p>
+
           <h2 className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
             Experience & Career
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
           <WorkSection data={workExp} />
-
           <EducationSection data={education} />
-
         </div>
       </div>
     </SectionWrapper>

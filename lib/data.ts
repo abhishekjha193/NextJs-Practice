@@ -108,7 +108,8 @@ export const experiences: Experience[] = [
     id: "1",
     company: "Independent Projects (Self-Employed)",
     role: "Full Stack Web Developer",
-    duration: "Mar 2026 – May 2026",
+    logo: "/exp-logo/independent.png",
+    duration: "Mar 2026 – June 2026",
     location: "Mumbai, India",
     currentlyWorking: true,
     achievements: [
@@ -123,6 +124,7 @@ export const experiences: Experience[] = [
     id: "2",
     company: "Technohacks Solution Pvt. Ltd.",
     role: "Full Stack Developer Intern",
+    logo: "/exp-logo/technohacks.png",
     duration: "Jan 2026 – Feb 2026",
     location: "Remote, India",
     achievements: [
@@ -139,6 +141,7 @@ export const experiences: Experience[] = [
     id: "3",
     company: "Shree L. R. Tiwari College of Engineering",
     role: "Cyber Security Intern",
+    logo: "/exp-logo/b_e-it.png",
     duration: "Apr 2024 – May 2024",
     location: "Mumbai, India",
     achievements: [
@@ -154,6 +157,7 @@ export const experiences: Experience[] = [
     id: "4",
     company: "Shree L.R. Tiwari College of Engineering",
     role: "B.E. Information Technology",
+    logo: "/exp-logo/b_e-it.png",
     duration: "2022 – 2026",
     location: "Mumbai, India",
     achievements: [
@@ -231,4 +235,6 @@ export const certificates: Certificate[] = [
     logo: "/certificate-logo/ml.png",
   },
 ];
+
+
 

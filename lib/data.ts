@@ -138,22 +138,6 @@ export const experiences: Experience[] = [
   },
 
   {
-    id: "3",
-    company: "Shree L. R. Tiwari College of Engineering",
-    role: "Cyber Security Intern",
-    logo: "/exp-logo/b_e-it.png",
-    duration: "Apr 2024 – May 2024",
-    location: "Mumbai, India",
-    achievements: [
-      "Hands-on training in ethical hacking and network security",
-      "Practiced vulnerability assessment using Kali Linux",
-      "Ran phishing awareness simulations in lab environment",
-      "Studied penetration testing and security fundamentals",
-      "Documented security findings and test reports",
-    ],
-  },
-
-  {
     id: "4",
     company: "Shree L.R. Tiwari College of Engineering",
     role: "B.E. Information Technology",
@@ -161,10 +145,10 @@ export const experiences: Experience[] = [
     duration: "2022 – 2026",
     location: "Mumbai, India",
     achievements: [
-      "Pursuing B.E. in Information Technology",
+      "Completed B.E. in Information Technology",
       "Focused on full-stack development and system design",
       "Built multiple MERN + AI-based projects",
-      "Active in DSA and web development practice",
+      "Participated in Multiple coding competitions and hackathons",
     ],
   },
 ];

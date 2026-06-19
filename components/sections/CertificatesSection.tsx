@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue, animate } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  animate,
+} from "framer-motion";
 import { X, CheckCircle } from "lucide-react";
 import { certificates } from "@/lib/data";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -16,7 +21,7 @@ export default function CertificatesSection() {
   const isDragging = useRef(false);
 
   const CARD_WIDTH = 170;
-  const speed = 40; // lower = smoother/slower
+  const speed = 10; 
 
   const startAnimation = () => {
     animationRef.current?.stop();
@@ -77,23 +82,96 @@ export default function CertificatesSection() {
               <motion.div
                 key={i}
                 onClick={() => !isDragging.current && setSelected(cert)}
-                whileHover={{ borderColor: "var(--red-500)" }}
+                whileHover={{}}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
                 className="
-                  min-w-[160px]
-                  h-[160px]
-                  rounded-2xl
-                  border border-[var(--border)]
-                  bg-[var(--surface)]
-                  backdrop-blur-xl
-                  p-3
-                  flex flex-col
+                  group
+                  relative
+                  min-w-[150px]
+                  sm:min-w-[170px]
+                  md:min-w-[180px]
+                  h-[155px]
+                  sm:h-[170px]
+                  rounded-3xl
+                  overflow-hidden
+                  cursor-pointer
+                  border
+                  border-black/10
+                  dark:border-white/10
+                  bg-white/80
+                  dark:bg-white/[0.04]
+
+                  backdrop-blur-2xl
+
+                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+                  dark:shadow-[0_15px_40px_rgba(0,0,0,0.45)]
+
+                  hover:border-red-500/40
+
+                  before:absolute
+                  before:inset-0
+                  before:bg-gradient-to-br
+                  before:from-white/80
+                  before:via-transparent
+                  before:to-transparent
+
+                  dark:before:from-white/10
+
+                  after:absolute
+                  after:inset-0
+                  after:bg-gradient-to-t
+                  after:from-black/[0.02]
+                  after:to-transparent
+
+                  dark:after:from-white/[0.02]
+
+                  p-4
+                  flex
+                  flex-col
                   items-center
                   justify-center
                   text-center
-                  cursor-pointer
                 "
               >
-                <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center mb-2">
+                <div
+                  className="
+      absolute
+      inset-0
+      opacity-0
+      group-hover:opacity-100
+      transition-opacity
+      duration-500
+      bg-[radial-gradient(circle_at_top,rgba(239,68,68,0.18),transparent_60%)]
+    "
+                />
+
+                <div
+                  className="
+      relative
+      z-10
+      w-12
+      h-12
+      rounded-2xl
+      flex
+      items-center
+      justify-center
+      bg-white
+      dark:bg-white/10
+      shadow-lg
+      dark:shadow-black/30
+      mb-3
+    "
+                  style={{
+                    transform: "translateZ(40px)",
+                  }}
+                >
                   <Image
                     src={cert.logo}
                     alt={cert.issuer}
@@ -103,15 +181,44 @@ export default function CertificatesSection() {
                   />
                 </div>
 
-                <h3 className="text-[12px] font-semibold text-[var(--text-primary)] line-clamp-2">
+                <h3
+                  className="
+      relative
+      z-10
+      text-[12px]
+      font-semibold
+      text-[var(--text-primary)]
+      line-clamp-2
+    "
+                  style={{
+                    transform: "translateZ(30px)",
+                  }}
+                >
                   {cert.title}
                 </h3>
 
-                <p className="mt-1 text-[11px] text-[var(--text-secondary)]">
+                <p
+                  className="
+      relative
+      z-10
+      mt-1
+      text-[11px]
+      text-[var(--text-secondary)]
+    "
+                  style={{
+                    transform: "translateZ(20px)",
+                  }}
+                >
                   {cert.issuer}
                 </p>
 
-                <CheckCircle size={12} className="text-green-500 mt-1" />
+                <CheckCircle
+                  size={14}
+                  className="relative z-10 text-green-500 mt-2"
+                  style={{
+                    transform: "translateZ(25px)",
+                  }}
+                />
               </motion.div>
             ))}
           </motion.div>

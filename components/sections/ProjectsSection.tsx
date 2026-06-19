@@ -118,7 +118,7 @@ export default function ProjectsSection() {
         </p>
       </div>
 
-      <div className="relative flex flex-col pb-20 gap-10">
+      <div className="relative flex flex-col pb-20 gap-20">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

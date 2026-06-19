@@ -192,15 +192,6 @@ export const certificates: Certificate[] = [
     logo: "/certificate-logo/SE.png",
   },
   {
-    id: "3",
-    title: "SQL Bootcamp",
-    issuer: "LetsUpgrade",
-    date: "2026",
-    badgeColor: "from-red-500 to-rose-500",
-    image: "/certificate/sqll.jpg",
-    logo: "/certificate-logo/sqll.png",
-  },
-  {
     id: "4",
     title: "UI/UX Design (Figma)",
     issuer: "Physics Wallah",
@@ -208,15 +199,6 @@ export const certificates: Certificate[] = [
     badgeColor: "from-red-500 to-pink-500",
     image: "/certificate/ui.jpg",
     logo: "/certificate-logo/ui.png",
-  },
-  {
-    id: "5",
-    title: "Machine Learning Basics",
-    issuer: "Vodafone Idea Foundation",
-    date: "2023",
-    badgeColor: "from-red-500 to-red-800",
-    image: "/certificate/ml.jpg",
-    logo: "/certificate-logo/ml.png",
   },
 ];
 

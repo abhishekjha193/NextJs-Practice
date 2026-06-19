@@ -129,7 +129,7 @@ export default function HeroSection() {
         {/* NAME */}
         <motion.h1
           variants={stagger.item}
-          className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight"
+          className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mt-8"
         >
           Abhishek Jha
         </motion.h1>
@@ -143,7 +143,7 @@ export default function HeroSection() {
         </motion.p>
 
         {/* IMAGE */}
-        <motion.div variants={stagger.item} className="my-5">
+        <motion.div variants={stagger.item} className="my-1">
           <MagneticImage />
         </motion.div>
 
@@ -177,7 +177,7 @@ export default function HeroSection() {
         {/* BUTTONS */}
         <motion.div
           variants={stagger.item}
-          className="flex flex-col sm:flex-row gap-2 justify-center mt-6 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-4 w-full sm:w-auto"
         >
           <Button href="#projects" primary>
             View Projects
@@ -186,151 +186,158 @@ export default function HeroSection() {
           <Button href="#contact">Contact Me</Button>
         </motion.div>
 
-{/* SCROLL INDICATOR - LEFT */}
-<div className="
+        {/* SCROLL INDICATOR - LEFT */}
+        <div
+          className="
   pointer-events-none absolute
   left-2 sm:left-4 md:left-8 lg:left-14 xl:left-20
   top-16 sm:top-20 md:top-24 lg:top-40
   z-30
   opacity-25 sm:opacity-30 md:opacity-40
   transition-opacity
-">
-  <div className="flex flex-col items-center gap-3 scale-75 sm:scale-90 md:scale-100">
-
-    {/* MOUSE */}
-    <div className="
+"
+        >
+          <div className="flex flex-col items-center gap-3 scale-75 sm:scale-90 md:scale-100">
+            {/* MOUSE */}
+            <div
+              className="
       h-12 w-7 sm:h-14 sm:w-8 md:h-16 md:w-9 lg:h-20 lg:w-10
       rounded-full border border-zinc-400/40 dark:border-red-500/40
       flex items-center justify-center backdrop-blur-sm
-    ">
-      <div className="w-1 h-3 sm:h-4 bg-red-500 rounded-full animate-scroll-wheel" />
-    </div>
+    "
+            >
+              <div className="w-1 h-3 sm:h-4 bg-red-500 rounded-full animate-scroll-wheel" />
+            </div>
 
-    {/* ARROW */}
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500 animate-bounce"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path d="M12 5v14M19 12l-7 7-7-7" />
-    </svg>
+            {/* ARROW */}
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500 animate-bounce"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
 
-  </div>
-</div>
-
-{/* SCROLL INDICATOR - RIGHT */}
-<div className="
+        {/* SCROLL INDICATOR - RIGHT */}
+        <div
+          className="
   pointer-events-none absolute
   right-2 sm:right-4 md:right-8 lg:right-14 xl:right-20
   top-16 sm:top-20 md:top-24 lg:top-40
   z-30
   opacity-25 sm:opacity-30 md:opacity-40
   transition-opacity
-">
-  <div className="flex flex-col items-center gap-3 scale-75 sm:scale-90 md:scale-100">
-
-    {/* MOUSE */}
-    <div className="
+"
+        >
+          <div className="flex flex-col items-center gap-3 scale-75 sm:scale-90 md:scale-100">
+            {/* MOUSE */}
+            <div
+              className="
       h-12 w-7 sm:h-14 sm:w-8 md:h-16 md:w-9 lg:h-20 lg:w-10
       rounded-full border border-zinc-400/40 dark:border-red-500/40
       flex items-center justify-center backdrop-blur-sm
-    ">
-      <div className="w-1 h-3 sm:h-4 bg-red-500 rounded-full animate-scroll-wheel" />
-    </div>
+    "
+            >
+              <div className="w-1 h-3 sm:h-4 bg-red-500 rounded-full animate-scroll-wheel" />
+            </div>
 
-    {/* ARROW */}
-    <svg
-      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500 animate-bounce"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path d="M12 5v14M19 12l-7 7-7-7" />
-    </svg>
-
-  </div>
-</div>
+            {/* ARROW */}
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500 animate-bounce"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
 
         {/* TECH STACK */}
         <motion.div
           variants={stagger.item}
-          className="
-    relative mt-5 w-full overflow-hidden
-    bg-transparent
-  "
+          className="relative mt-2 w-full overflow-hidden bg-transparent"
         >
-          {/* LEFT LINE */}
-          <div className="absolute left-0 top-0 z-20 h-full w-px bg-gradient-to-b from-transparent via-red-500/40 to-transparent" />
+          {/* SIDE GLOW LINES */}
+          <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-red-500/40 to-transparent" />
+          <div className="absolute right-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-red-500/40 to-transparent" />
 
-          {/* RIGHT LINE */}
-          <div className="absolute right-0 top-0 z-20 h-full w-px bg-gradient-to-b from-transparent via-red-500/40 to-transparent" />
-
-          <div className="overflow-hidden py-5">
-            <div className="marquee-track flex w-max gap-3">
+          <div className="space-y-4 py-5 overflow-hidden">
+            {/* ROW 1 - LEFT TO RIGHT */}
+            <div className="flex w-max gap-3 animate-marqueeLeft">
               {[
-                "React",
+                "JavaScript (ES6+)",
                 "TypeScript",
+                "React.js",
+                "HTML5",
+                "CSS3",
+                "Tailwind CSS",
+                "Redux",
                 "Node.js",
                 "Express.js",
                 "MongoDB",
-                "Tailwind CSS",
-                "LangGraph",
-                "LangChain",
+                "MySQL",
+                "Redis",
                 "REST APIs",
                 "JWT Auth",
                 "Git",
                 "Postman",
-                "Redux",
-                "Redis",
-                "MySQL",
-                "Vercel",
-
-                // duplicate for smooth loop
-                "React",
-                "TypeScript",
-                "Node.js",
-                "Express.js",
-                "MongoDB",
-                "Tailwind CSS",
-                "LangGraph",
-                "LangChain",
-                "REST APIs",
-                "JWT Auth",
-                "Git",
-                "Postman",
-                "Redux",
-                "Redis",
-                "MySQL",
-                "Vercel",
-              ].map((tech, index) => (
+              ].map((tech, i) => (
                 <span
-                  key={`${tech}-${index}`}
+                  key={`r1-${i}`}
                   className="
-            shrink-0
-            rounded-full
+            px-4 py-2 text-xs sm:text-sm font-medium
+            rounded-full shrink-0
             border border-zinc-200/60 dark:border-zinc-800/60
             bg-white/60 dark:bg-zinc-900/40
             backdrop-blur-xl
-
-            px-4 py-2
-            text-xs sm:text-sm
-            font-medium
-
             text-zinc-700 dark:text-zinc-300
-
             transition-all duration-300
+            hover:scale-105 hover:-translate-y-1
+            hover:border-red-400/60 hover:text-red-500
+            cursor-default
+          "
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
 
-            hover:-translate-y-1
-            hover:scale-105
-
-            hover:border-red-400/60
-            hover:text-red-500 dark:hover:text-red-400
-
-            hover:shadow-[0_0_18px_rgba(255,0,0,0.18)]
-
+            {/* ROW 2 - RIGHT TO LEFT */}
+            <div className="flex w-max gap-3 animate-marqueeRight">
+              {[
+                "LangChain",
+                "LangGraph",
+                "AI Integration",
+                "Prompt Engineering",
+                "Vercel",
+                "Render",
+                "GitHub",
+                "OOP",
+                "MVC",
+                "API Design",
+                "Authentication",
+                "Client-Server",
+                "Debugging",
+                "Performance Optimization",
+              ].map((tech, i) => (
+                <span
+                  key={`r2-${i}`}
+                  className="
+            px-4 py-2 text-xs sm:text-sm font-medium
+            rounded-full shrink-0
+            border border-zinc-200/60 dark:border-zinc-800/60
+            bg-white/60 dark:bg-zinc-900/40
+            backdrop-blur-xl
+            text-zinc-700 dark:text-zinc-300
+            transition-all duration-300
+            hover:scale-105 hover:-translate-y-1
+            hover:border-red-400/60 hover:text-red-500
             cursor-default
           "
                 >

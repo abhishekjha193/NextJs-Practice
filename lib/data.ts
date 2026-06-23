@@ -106,17 +106,14 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: "1",
-    company: "Independent Projects (Self-Employed)",
-    role: "Full Stack Web Developer",
+    company: "Icanio Technology Labs Pvt. Ltd",
+    role: "Full Stack Developer intern",
     logo: "/exp-logo/independent.png",
-    duration: "Mar 2026 – June 2026",
-    location: "Mumbai, India",
+    duration: "July 2026 – Present",
+    location: "Remote",
     currentlyWorking: true,
     achievements: [
-      "Built MERN apps with AI integration and scalable architecture",
-      "Developed Snitch-style e-commerce with auth, cart & filtering",
-      "Working on AI Model Arena for multi-model response comparison",
-      "Used React, Node, Express, MongoDB, JWT, REST APIs",
+      "Working on MERN apps with AI integration and scalable architecture",
     ],
   },
 
@@ -128,7 +125,7 @@ export const experiences: Experience[] = [
     duration: "Jan 2026 – Feb 2026",
     location: "Remote, India",
     achievements: [
-      "Built task management features using MERN stack",
+      "Engineered enterprise management features using MERN stack",
       "Implemented JWT auth and role-based access control",
       "Developed REST APIs with MongoDB CRUD operations",
       "Created reusable React components for UI scalability",

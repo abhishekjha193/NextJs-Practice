@@ -169,8 +169,7 @@ export default function HeroSection() {
           </span>
 
           <span className="text-center">
-            <span className="text-green-500 font-medium">Open to Work</span> —
-            Available for Full Stack Roles
+            <span className="text-green-500 font-medium">Currently Working As Full Stack Intern</span>          
           </span>
         </motion.div>
 
